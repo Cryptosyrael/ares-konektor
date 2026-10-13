@@ -44,6 +44,7 @@ kurz/
 ├── styl.css        vzhled
 ├── obsah.js        VEŠKERÝ TEXT: moduly, ukázky, otázky testu, kontakty
 ├── ozvena.js       postava Ozvěna v SVG
+├── obrazky/        logo Elpidy (plné logo + samotný znak)
 ├── prehravac.js    přehrávač ukázek
 └── kurz.js         logika kurzu, test, ukládání postupu
 ```
@@ -59,8 +60,11 @@ V `obsah.js` nahoře v objektu `KONFIG`:
 - `telefon`, `pracovniDoba` — kontakt na vlastní linku
 - `odkazy` — kam účastníka odkázat dál
 
-Dál zbývá: podoba potvrzení o absolvování, finální ilustrace Ozvěny
-(`ozvena.js` je pracovní návrh podle grantového materiálu) a logo v hlavičce.
+Dál zbývá: podoba potvrzení o absolvování a finální ilustrace Ozvěny
+(`ozvena.js` je pracovní návrh podle grantového materiálu).
+
+Logo Elpidy je v `obrazky/` — `elpida-logo.png` v hlavičce, `elpida-znak.png`
+(samotný znak) jako ikona záložky a v patičce.
 
 ## Data a soukromí
 

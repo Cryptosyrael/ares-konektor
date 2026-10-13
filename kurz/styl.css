@@ -39,6 +39,7 @@ p { margin-bottom: .8em; }
 a { color: var(--tyrkys-tmavy); }
 
 :focus-visible { outline: 3px solid var(--tyrkys-tmavy); outline-offset: 3px; border-radius: 4px; }
+.obsah:focus, .obsah:focus-visible { outline: none; }   /* zaměřujeme jen kvůli čtečkám */
 
 .preskocit {
   position: absolute; left: -9999px; top: 0; background: var(--inkoust); color: #fff;
@@ -55,11 +56,8 @@ a { color: var(--tyrkys-tmavy); }
   max-width: 1120px; margin: 0 auto; padding: .7rem 1.2rem;
   display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap;
 }
-.logo {
-  border: 2px dashed var(--seda); border-radius: 6px; padding: .35rem .9rem;
-  font-size: .72rem; letter-spacing: .12em; color: var(--seda); font-weight: 700;
-  background: none; cursor: pointer;
-}
+.logo { background: none; border: 0; padding: .2rem; cursor: pointer; border-radius: 8px; line-height: 0; }
+.logo img { height: 3rem; width: auto; display: block; }
 .stav-kurzu { font-size: .85rem; font-weight: 700; display: flex; align-items: center; gap: .7rem; }
 .pruh { width: 120px; height: 9px; background: var(--ram); border-radius: 5px; overflow: hidden; }
 .pruh i { display: block; height: 100%; background: var(--tyrkys-tmavy); transition: width .4s; }
@@ -249,7 +247,11 @@ a { color: var(--tyrkys-tmavy); }
 .pomoc-vnitrek { max-width: 1120px; margin: 0 auto; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
 .pomoc-pruh b { color: var(--tyrkys); }
 .pomoc-pruh a { color: #fff; font-weight: 800; text-decoration: none; border-bottom: 2px solid var(--tyrkys); }
-.patka-info { max-width: 1120px; margin: 0 auto; padding: 0 1.2rem 1rem; font-size: .82rem; color: var(--seda); }
+.patka-info {
+  max-width: 1120px; margin: 0 auto; padding: 0 1.2rem 1rem; font-size: .82rem; color: var(--seda);
+  display: flex; gap: .8rem; align-items: center;
+}
+.patka-znak { width: 2.2rem; height: 2.2rem; flex: 0 0 auto; }
 
 /* ---------- drobnosti ---------- */
 .skryte { display: none !important; }
@@ -259,6 +261,7 @@ a { color: var(--tyrkys-tmavy); }
 
 @media (max-width: 620px) {
   body { padding-bottom: 10.5rem; }
+  .logo img { height: 2.4rem; }
   .pomoc-pruh { font-size: .82rem; padding: .6rem .9rem; }
   .pomoc-vnitrek { gap: .3rem; }
   .tlacitko-nastroj { padding: .4rem .7rem; font-size: .8rem; }
@@ -282,7 +285,7 @@ html[data-pohyb="vypnuto"] * { animation: none !important; transition: none !imp
 
 /* ---------- tisk shrnutí ---------- */
 @media print {
-  .hlavicka, .pomoc-pruh, .radek-tlacitek, .prehravac, .preskocit { display: none !important; }
+  .hlavicka .nastroje, .hlavicka .stav-kurzu, .pomoc-pruh, .radek-tlacitek, .prehravac, .preskocit { display: none !important; }
   body { padding: 0; background: #fff; }
   .karta, .zasada, .kontakt { break-inside: avoid; box-shadow: none; }
   .obsah { max-width: none; padding: 0; }
