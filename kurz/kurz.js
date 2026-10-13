@@ -4,14 +4,25 @@
 /* ------------------------- uložený stav ------------------------- */
 const KLIC = 'stroj-ktery-naslouchá-v1';
 const vychozi = { pismo: 2, pohyb: 'zapnuto', nahlas: false, hotove: {}, test: null, posledni: null, signaly: [] };
+
+SCORM.start();              // v LMS, jinak se nic nestane
 let S = nacti();
 
 function nacti() {
-  try { return Object.assign({}, vychozi, JSON.parse(localStorage.getItem(KLIC) || '{}')); }
+  let ulozeno = '';
+  try { ulozeno = SCORM.nacti(); } catch (e) { /* LMS neodpověděl */ }
+  if (!ulozeno) { try { ulozeno = localStorage.getItem(KLIC) || ''; } catch (e) { /* soukromé okno */ } }
+  try { return Object.assign({}, vychozi, JSON.parse(ulozeno || '{}')); }
   catch (e) { return Object.assign({}, vychozi); }
 }
+
 function uloz() {
-  try { localStorage.setItem(KLIC, JSON.stringify(S)); } catch (e) { /* soukromé okno */ }
+  const text = JSON.stringify(S);
+  try { localStorage.setItem(KLIC, text); } catch (e) { /* soukromé okno */ }
+  try {
+    SCORM.uloz(text, S.posledni ? `Modul ${S.posledni.m + 1}, krok ${S.posledni.k + 1}` : '');
+    if (pocetHotovych() >= pocetKroku()) SCORM.dokonceno();
+  } catch (e) { /* LMS neodpověděl */ }
 }
 
 /* ------------------------- čtení nahlas ------------------------- */
@@ -486,6 +497,7 @@ function vyhodnot() {
   S.test = { skore, celkem: OTAZKY.length, proslo, kdy: new Date().toISOString() };
   oznacHotovo(T.m, T.k);
   uloz();
+  SCORM.vysledek(Math.round((skore / OTAZKY.length) * 100), proslo);
 
   const chybne = OTAZKY.map((o, i) => ({ o, i })).filter(x => T.vysledky[x.i] === false);
 
@@ -610,3 +622,7 @@ function start() {
 }
 
 document.addEventListener('DOMContentLoaded', start);
+
+// LMS je potřeba na konci korektně odhlásit, jinak se čas i stav nemusí uložit
+window.addEventListener('pagehide', () => SCORM.konec());
+window.addEventListener('beforeunload', () => SCORM.konec());
