@@ -58,6 +58,7 @@ a { color: var(--tyrkys-tmavy); }
 }
 .logo { background: none; border: 0; padding: .2rem; cursor: pointer; border-radius: 8px; line-height: 0; }
 .logo img { height: 3rem; width: auto; display: block; }
+img.jen-tisk { display: none; }
 .stav-kurzu { font-size: .85rem; font-weight: 700; display: flex; align-items: center; gap: .7rem; }
 .pruh { width: 120px; height: 9px; background: var(--ram); border-radius: 5px; overflow: hidden; }
 .pruh i { display: block; height: 100%; background: var(--tyrkys-tmavy); transition: width .4s; }
@@ -285,6 +286,8 @@ html[data-pohyb="vypnuto"] * { animation: none !important; transition: none !imp
 
 /* ---------- tisk shrnutí ---------- */
 @media print {
+  img.jen-obrazovka { display: none; }
+  img.jen-tisk { display: block; }
   .hlavicka .nastroje, .hlavicka .stav-kurzu, .pomoc-pruh, .radek-tlacitek, .prehravac, .preskocit { display: none !important; }
   body { padding: 0; background: #fff; }
   .karta, .zasada, .kontakt { break-inside: avoid; box-shadow: none; }

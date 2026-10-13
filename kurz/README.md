@@ -63,8 +63,18 @@ V `obsah.js` nahoře v objektu `KONFIG`:
 Dál zbývá: podoba potvrzení o absolvování a finální ilustrace Ozvěny
 (`ozvena.js` je pracovní návrh podle grantového materiálu).
 
-Logo Elpidy je v `obrazky/` — `elpida-logo.png` v hlavičce, `elpida-znak.png`
-(samotný znak) jako ikona záložky a v patičce.
+Logo Elpidy je v `obrazky/` jako vektor (SVG), takže je ostré v každé velikosti i při tisku:
+
+| soubor | kde se používá |
+|---|---|
+| `elpida-logo.svg` | hlavička kurzu |
+| `elpida-logo-cb.svg` | černobílá verze, použije se při tisku |
+| `elpida-znak.svg` | samotný znak — patička a ikona záložky |
+| `elpida-znak.png` | záloha ikony pro starší prohlížeče |
+| `zdroj/*.pdf` | vektorové originály, ze kterých SVG vzniklo |
+
+Překryvy v logu jsou udělané přes `mix-blend-mode: multiply` (odtud černý bod
+uprostřed). Skupina je izolovaná, takže logo vypadá stejně na jakémkoli pozadí.
 
 ## Data a soukromí
 
