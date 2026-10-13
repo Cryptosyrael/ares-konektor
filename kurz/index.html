@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="cs" data-pismo="2" data-pohyb="zapnuto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stroj, který naslouchá — online kurz</title>
+  <meta name="description" content="Informační online kurz pro seniory o umělé inteligenci jako posluchači, rádci a společníkovi: co dokáže a kde její možnosti končí.">
+  <link rel="stylesheet" href="styl.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='18' y='20' width='64' height='70' rx='14' fill='%23f0555f' stroke='%23111' stroke-width='7'/><ellipse cx='50' cy='50' rx='18' ry='12' fill='%23fff' stroke='%23111' stroke-width='6'/><circle cx='50' cy='50' r='6'/></svg>">
+</head>
+<body>
+  <a class="preskocit" href="#obsah">Přeskočit na obsah kurzu</a>
+
+  <header class="hlavicka">
+    <div class="hlavicka-vnitrek">
+      <button class="logo" id="domu" title="Zpět na úvod kurzu">[LOGO]</button>
+
+      <button class="stav-kurzu" id="pruhOdkaz" style="background:none;border:0;cursor:pointer;font:inherit;font-weight:700">
+        <span class="pruh" aria-hidden="true"><i id="pruhVypln" style="width:0%"></i></span>
+        <span id="pruhPopis">Zatím nezačato</span>
+      </button>
+
+      <div class="nastroje">
+        <span class="jen-ctecka" id="popisPisma">Velikost písma</span>
+        <div class="pismo-sada" role="group" aria-labelledby="popisPisma">
+          <button type="button" aria-pressed="false" aria-label="Malé písmo">A</button>
+          <button type="button" aria-pressed="true" aria-label="Střední písmo">A</button>
+          <button type="button" aria-pressed="false" aria-label="Velké písmo">A</button>
+        </div>
+        <button class="tlacitko-nastroj" id="btnPohyb" type="button" aria-pressed="false">
+          <span aria-hidden="true">✳</span><span>Vypnout animace</span>
+        </button>
+        <button class="tlacitko-nastroj" id="btnNahlas" type="button" aria-pressed="false">
+          <span aria-hidden="true">🔊</span><span>Přečíst nahlas</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="obsah" id="obsah" tabindex="-1"></main>
+
+  <p class="patka-info">
+    Kurz informuje. Neléčí a neposkytuje poradenství. Odborný rámec: Metodika AI Linky seniorů (Elpida)
+    a APA Health Advisory, listopad 2025. Postup se ukládá jen do tohoto prohlížeče a nikam se neodesílá.
+  </p>
+
+  <div class="pomoc-pruh">
+    <div class="pomoc-vnitrek">
+      <b>Potřebujete pomoc hned?</b>
+      <span id="linky"></span>
+    </div>
+  </div>
+
+  <script src="obsah.js"></script>
+  <script src="ozvena.js"></script>
+  <script src="prehravac.js"></script>
+  <script src="kurz.js"></script>
+</body>
+</html>
