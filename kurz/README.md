@@ -143,7 +143,19 @@ Hotové balíčky jsou ve složce `dist/`:
 | `stroj-ktery-nasloucha-scorm12.zip` | Moodle, Elbot a většina ostatních — **začněte tímto** |
 | `stroj-ktery-nasloucha-scorm2004.zip` | když LMS výslovně žádá SCORM 2004 |
 
-V Moodle: *Přidat činnost → SCORM balíček* a ZIP nahrát. Nic dalšího se nenastavuje.
+V Moodle: *Přidat činnost → SCORM balíček* a ZIP nahrát.
+
+### Nastavení v Moodle, na kterém záleží
+
+| nastavení | doporučení | proč |
+|---|---|---|
+| **Zobrazit balíček** | *Nové okno*, nebo rámeček aspoň **700 px** | Výchozí rámeček má 500 px. Kurz se mu přizpůsobí a dá se používat, ale na ukázky i test je těsný. |
+| **Vynutit nový pokus** | *Nikdy* | Jinak se při každém otevření zahodí rozdělaný postup. |
+| **Metoda hodnocení** | *Nejvyšší skóre* | Test je schválně opakovatelný. |
+| **Maximální velikost souboru** | musí být větší než balíček | Bez zvuku má balíček 42 kB. S namluveným výkladem poroste na jednotky až desítky MB — pokud nahrání selže, je to tohle a zvedá to správce. |
+
+Zvuk vyexportujte jako mono, kolem 64 kbps. Na mluvené slovo to stačí a balíček
+zůstane malý.
 
 **Po každé úpravě textů balíček znovu vytvořte**, jinak v LMS zůstane stará verze:
 
