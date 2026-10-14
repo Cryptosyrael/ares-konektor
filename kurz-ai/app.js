@@ -21,12 +21,36 @@
   const JMENA = { L: "Honza", O: "Ozvěna", J: "Paní Jana", T: "Pan Tomáš", CH: "Chatbot", TIT: "Uživatelka" };
 
   // ---------- uložený postup a nastavení ----------
+  // V LMS (SCORM) se postup drží i tam, mimo LMS jen v prohlížeči.
+  SCORM.start();
+  const zLms = (() => { try { return JSON.parse(SCORM.nacti() || "null"); } catch (e) { return null; } })();
+  const stav = zLms || {};                 // zrcadlo všeho, co posíláme do LMS
+
   const store = {
-    get(k, d) { try { const v = localStorage.getItem("skn-" + k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
-    set(k, v) { try { localStorage.setItem("skn-" + k, JSON.stringify(v)); } catch (e) { /* soukromý režim */ } },
+    get(k, d) {
+      if (k in stav) return stav[k];
+      try { const v = localStorage.getItem("skn-" + k); if (v !== null) return (stav[k] = JSON.parse(v)); }
+      catch (e) { /* soukromý režim */ }
+      return d;
+    },
+    set(k, v) {
+      stav[k] = v;
+      try { localStorage.setItem("skn-" + k, JSON.stringify(v)); } catch (e) { /* soukromý režim */ }
+      SCORM.uloz(JSON.stringify(stav), kdeJsem());
+    },
   };
+
+  const kdeJsem = () => {
+    const [a, b] = location.hash.replace(/^#\/?/, "").split("/");
+    return a === "video" ? "Video " + b : a === "modul" ? "Modul " + b : a === "test" ? "Závěrečný test" : "Úvod";
+  };
+
   const progress = store.get("postup", { videa: {}, test: null });
-  const saveProgress = () => store.set("postup", progress);
+  const saveProgress = () => {
+    store.set("postup", progress);
+    // kurz je dokončený, až jsou shlédnutá všechna videa a je za sebou test
+    if (progress.test && Object.keys(VIDEA).every((id) => progress.videa[id])) SCORM.dokonceno();
+  };
   const modulHotov = (m) => m.videa.length > 0 ? m.videa.every((v) => progress.videa[v]) : !!(progress.test && progress.test.uspel);
 
   // ---------- nastavení zobrazení ----------
@@ -321,7 +345,7 @@
     showScene(name, r) {
       this.chatBody = null; this.center.className = "center"; this.center.innerHTML = "";
       if (name === "titul") {
-        this.center.append(el("div", { class: "vquest", style: "text-align:center" }, el("div", { class: "logo-box", style: "display:inline-block;margin-bottom:10px" }, "[LOGO]"), el("div", { style: "font-size:1.5em" }, KURZ.nazev), el("div", { style: "font-family:var(--body);font-weight:500;font-size:.8em;margin-top:6px;color:#444" }, KURZ.zadatel)));
+        this.center.append(el("div", { class: "vquest", style: "text-align:center" }, el("img", { class: "logo-img", src: "obrazky/elpida-logo.svg", alt: "Elpida", style: "display:inline-block;margin:0 auto 10px" }), el("div", { style: "font-size:1.5em" }, KURZ.nazev), el("div", { style: "font-family:var(--body);font-weight:500;font-size:.8em;margin-top:6px;color:#444" }, KURZ.zadatel)));
       } else if (name === "moduly") {
         const g = el("div", { class: "vmods" });
         MODULY.forEach((m, i) => g.append(el("div", { style: "animation-delay:" + (i * .5) + "s" }, el("b", {}, m.c), m.nazev)));
@@ -569,6 +593,7 @@
     function renderResult() {
       const body = vysledky.filter(Boolean).length; const uspel = body >= KURZ.hraniceTestu;
       progress.test = { body, uspel, datum: new Date().toISOString().slice(0, 10) }; saveProgress();
+      SCORM.vysledek(Math.round((body / TEST.length) * 100), uspel);
       const spatne = TEST.map((q, k) => (!vysledky[k] ? q.zasada : null)).filter((x) => x);
       const zasadyKOpak = [...new Set(spatne)];
       wrap.append(el("div", { class: "guide-box" }, charNode("ozvena", uspel ? "happy" : "hello", "char"), el("p", {}, uspel ? "Výborně. Máte to za sebou a čtyři zásady vám zůstanou." : "Děkuji, že jste to zkusili. Můžete se podívat na videa k zásadám, které vás potrápily, a test zopakovat.")),
@@ -580,6 +605,10 @@
     }
     render();
   }
+
+  // LMS je potřeba na konci odhlásit, jinak se nemusí uložit čas ani stav
+  window.addEventListener("pagehide", () => SCORM.konec());
+  window.addEventListener("beforeunload", () => SCORM.konec());
 
   // ---------- směrování ----------
   function route() {

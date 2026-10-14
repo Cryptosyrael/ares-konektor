@@ -16,6 +16,55 @@ stačí ji nahrát kamkoli na web (například zdarma na GitHub Pages).
 | `content.js` | **veškerý text kurzu**: moduly, repliky videí, otázky, zásady, kontakty |
 | `characters.js` | kreslené postavy Honza a Ozvěna (SVG) |
 | `audio/` | zvuky: `1.1-O1.mp3` = video 1.1, Ozvěna, 1. replika; `2.1-L1.mp3` = Honza; `2.1-CH1.mp3` = ťukání chatbota |
+| `obrazky/` | logo Elpidy ve vektoru, zdrojová PDF ve `zdroj/` |
+| `scorm.js` | propojení s LMS; mimo LMS se nic neděje |
+| `zabalit-scorm.py` | vytvoří SCORM balíček do `dist/` |
+| `test-lms.html` | zkušební LMS pro ověření bez Moodlu |
+
+## Logo
+
+Logo Elpidy je v `obrazky/` ve vektoru, takže je ostré v každé velikosti i při tisku.
+V hlavičce a na závěrečné kartě videa je barevná verze, při tisku se sama přepne
+na černobílou. Znak slouží jako ikona záložky.
+
+| soubor | kde se používá |
+|---|---|
+| `elpida-logo.svg` | hlavička a závěrečná karta videa |
+| `elpida-logo-cb.svg` | černobílá verze pro tisk |
+| `elpida-znak.svg` | ikona záložky |
+| `elpida-znak.png` | záloha ikony pro starší prohlížeče |
+| `zdroj/*.pdf` | vektorové originály, ze kterých SVG vzniklo |
+
+## Nasazení do LMS (SCORM)
+
+Kurz umí mluvit s LMS přes SCORM — **1.2 i 2004 3rd Edition**, správnou verzi si
+najde sám. Mimo LMS se nic nemění a kurz běží jako obyčejná stránka.
+
+Hotové balíčky vzniknou do složky `dist/`:
+
+```
+python3 zabalit-scorm.py           # SCORM 1.2 (nejširší podpora)
+python3 zabalit-scorm.py --2004    # SCORM 2004
+```
+
+Skript si seznam souborů i hranici úspěšnosti bere z kurzu, nahrávky ze složky
+`audio/` přibalí sám. **Po každé úpravě balíček vytvořte znovu**, jinak v LMS
+zůstane stará verze.
+
+### Co kurz do LMS hlásí
+
+| údaj | kdy |
+|---|---|
+| splněno / nesplněno | po testu, podle hranice `hraniceTestu` (teď 7 z 10 = 70 %) |
+| bodové skóre v procentech | po testu |
+| dokončeno | když jsou shlédnutá všechna videa a je za sebou test |
+| rozdělaný postup | průběžně, aby šlo pokračovat i na jiném počítači |
+| kde účastník skončil | průběžně (modul, video nebo test) |
+| strávený čas | při zavření kurzu |
+
+`test-lms.html` je zkušební LMS: otevřete ho v prohlížeči a vpravo uvidíte živě,
+co kurz hlásí. Adresou `test-lms.html?v=2004` přepnete na SCORM 2004.
+Do balíčku se nepřidává.
 
 ## Jak něco upravit
 

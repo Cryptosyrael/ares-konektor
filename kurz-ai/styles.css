@@ -29,6 +29,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 .top-in{max-width:1180px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
 .logo{display:flex;align-items:center;gap:12px;text-decoration:none;font-family:var(--head);font-weight:800}
 .logo-box{border:2px dashed #888;color:#666;font:600 .7em var(--body);padding:8px 10px;border-radius:6px;letter-spacing:.05em}
+.logo-img{height:2.6rem;width:auto;display:block}
+img.jen-tisk{display:none}
 .top-nav{display:flex;gap:18px;flex-wrap:wrap}
 .top-nav a{font-family:var(--head);font-weight:700;font-size:.85em;text-decoration:none;text-transform:uppercase;letter-spacing:.04em;padding:6px 2px;border-bottom:3px solid transparent}
 .top-nav a:hover,.top-nav a.active{border-color:var(--cor);color:var(--ink)}
@@ -266,3 +268,13 @@ body.nomotion *,body.nomotion *::before,body.nomotion *::after{animation:none !i
 .help-in a:hover{color:var(--lt)}
 .help-in .sep{opacity:.5;margin:0 6px}
 @media (max-width:700px){.help-bar{position:static}.stage .ch.oz{width:30%}.stage .ch.ho{width:24%}.stage .center{left:10%;right:10%;top:8%}.stage .warn{font-size:.65em}}
+
+
+/* ---------- tisk (potvrzení o absolvování) ---------- */
+@media print{
+  img.jen-obrazovka{display:none}
+  img.jen-tisk{display:block}
+  .top-nav,.tools,.sub-in,.help-bar,.btn,.btnmini,.video,.controls{display:none !important}
+  body{background:#fff}
+  .cert,.result{break-inside:avoid}
+}

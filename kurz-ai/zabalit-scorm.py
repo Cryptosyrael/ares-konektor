@@ -19,29 +19,57 @@ NAZEV = 'Stroj, který naslouchá'
 
 # Co patří do balíčku. Zdrojová PDF log, návody ani skripty ne.
 ZAKLAD = [
-    'index.html', 'styl.css',
-    'scorm.js', 'obsah.js', 'ozvena.js', 'prehravac.js', 'kurz.js',
+    'index.html', 'styles.css',
+    'scorm.js', 'content.js', 'characters.js', 'app.js',
     'obrazky/elpida-logo.svg', 'obrazky/elpida-logo-cb.svg',
     'obrazky/elpida-znak.svg', 'obrazky/elpida-znak.png',
 ]
-# Namluvený výklad: přibalí se všechno, co ve složce zvuk/ zrovna leží.
+# Nahrávky: přibalí se všechno, co ve složce audio/ zrovna leží.
 ZVUK_PRIPONY = ('.mp3', '.m4a', '.ogg', '.wav')
 
 
 def soubory() -> list:
     zvuk = sorted(
-        'zvuk/' + s.name for s in (KOREN / 'zvuk').glob('*')
+        'audio/' + s.name for s in (KOREN / 'audio').glob('*')
         if s.is_file() and s.suffix.lower() in ZVUK_PRIPONY
     )
     return ZAKLAD + zvuk
 
 
 def hranice_v_procentech() -> int:
-    """Přečte hranici úspěšnosti z obsah.js, ať ji nemusíme udržovat dvakrát."""
-    text = (KOREN / 'obsah.js').read_text(encoding='utf-8')
-    hranice = int(re.search(r'hraniceUspechu:\s*(\d+)', text).group(1))
-    otazek = int(re.search(r'pocetOtazek:\s*(\d+)', text).group(1))
-    return round(hranice / otazek * 100)
+    """Přečte hranici úspěšnosti z content.js, ať ji nemusíme udržovat dvakrát."""
+    text = (KOREN / 'content.js').read_text(encoding='utf-8')
+    hranice = int(re.search(r'hraniceTestu:\s*(\d+)', text).group(1))
+    return round(hranice / pocet_otazek(text) * 100)
+
+
+def pocet_otazek(text: str) -> int:
+    """Spočítá otázky v poli TEST – závorky, ne odhad podle klíčových slov."""
+    zacatek = text.index('const TEST', 0)
+    zacatek = text.index('[', zacatek)
+    hloubka, otazek, v_retezci, znak, i = 0, 0, False, '', zacatek
+    while i < len(text):
+        c = text[i]
+        if v_retezci:
+            if c == '\\':
+                i += 2
+                continue
+            if c == znak:
+                v_retezci = False
+        elif c in '"\'':
+            v_retezci, znak = True, c
+        elif c in '[{':
+            hloubka += 1
+            if c == '{' and hloubka == 2:
+                otazek += 1
+        elif c in ']}':
+            hloubka -= 1
+            if hloubka == 0:
+                break
+        i += 1
+    if not otazek:
+        raise SystemExit('V content.js se nepodařilo spočítat otázky testu.')
+    return otazek
 
 
 def manifest(soubory, scorm2004: bool, mastery: int) -> str:
@@ -137,8 +165,8 @@ def main() -> int:
     print(f'Hotovo: {cil.relative_to(KOREN)}  ({cil.stat().st_size / 1024:.0f} kB, '
           f'{len(SOUBORY) + 1} souborů, SCORM {"2004 3rd Edition" if scorm2004 else "1.2"}, '
           f'hranice úspěšnosti {mastery} %)')
-    print(f'Zvukových stop v balíčku: {stop}'
-          + ('' if stop else '  — složka zvuk/ je prázdná, kurz poběží bez namluveného výkladu'))
+    print(f'Nahrávek v balíčku: {stop}'
+          + ('' if stop else '  — složka audio/ je prázdná, videa poběží bez hlasu'))
     return 0
 
 
