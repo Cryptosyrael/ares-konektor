@@ -50,6 +50,58 @@ const Nahlas = {
   }
 };
 
+/* ------------------------- namluvený výklad ------------------------- */
+/* Zvuk je nepovinný. Když stopa ve složce zvuk/ není, tlačítko se vůbec
+   neobjeví a kurz se chová jako dosud. */
+let prehravanyZvuk = null;
+
+function zastavZvuk() {
+  if (prehravanyZvuk) { try { prehravanyZvuk.pause(); } catch (e) { /* nic */ } prehravanyZvuk = null; }
+}
+
+function stopaHTML(id) {
+  return id ? `<div class="stopa skryte" id="stopa-${id}" data-zvuk="${zvukSouboru(id)}">
+      <button class="tl stopa-hrat" type="button"><span class="stopa-ikona" aria-hidden="true">▶</span>
+      <span class="stopa-popis">Poslechnout výklad</span></button>
+      <span class="stopa-cas"></span>
+    </div>` : '';
+}
+
+function navazStopu(id) {
+  const ramec = id && document.getElementById('stopa-' + id);
+  if (!ramec) return;
+  const zvuk = new Audio();
+  zvuk.preload = 'metadata';
+  const tl = ramec.querySelector('.stopa-hrat');
+  const ikona = ramec.querySelector('.stopa-ikona');
+  const popis = ramec.querySelector('.stopa-popis');
+  const cas = ramec.querySelector('.stopa-cas');
+
+  const vzhled = () => {
+    ikona.textContent = zvuk.paused ? '▶' : '❚❚';
+    popis.textContent = zvuk.paused ? (zvuk.currentTime ? 'Pokračovat' : 'Poslechnout výklad') : 'Zastavit';
+    cas.textContent = mmss(zvuk.currentTime) + ' / ' + mmss(zvuk.duration || 0);
+  };
+
+  zvuk.addEventListener('loadedmetadata', () => { ramec.classList.remove('skryte'); vzhled(); });
+  zvuk.addEventListener('timeupdate', vzhled);
+  zvuk.addEventListener('play', vzhled);
+  zvuk.addEventListener('pause', vzhled);
+  zvuk.addEventListener('ended', () => { zvuk.currentTime = 0; vzhled(); });
+  zvuk.addEventListener('error', () => ramec.remove());   // stopa zatím není nahraná
+
+  tl.addEventListener('click', () => {
+    if (zvuk.paused) {
+      Nahlas.ticho();                 // ať nemluví dva hlasy přes sebe
+      if (prehravanyZvuk !== zvuk) zastavZvuk();
+      prehravanyZvuk = zvuk;
+      zvuk.play().catch(() => ramec.remove());
+    } else zvuk.pause();
+  });
+
+  zvuk.src = ramec.dataset.zvuk;
+}
+
 /* ------------------------- pomůcky ------------------------- */
 const $ = s => document.querySelector(s);
 const el = (t, tr, html) => { const e = document.createElement(t); if (tr) e.className = tr; if (html != null) e.innerHTML = html; return e; };
@@ -81,6 +133,7 @@ function obnovPruh() {
 }
 
 function vykresli(html) {
+  zastavZvuk();
   const o = $('#obsah');
   o.innerHTML = html;
   window.scrollTo(0, 0);
@@ -236,6 +289,7 @@ function krokText(m, k, krok) {
       <div>
         <h1>${krok.nazev}</h1>
         <p style="margin-top:.7rem;font-size:1.05rem">${krok.uvod}</p>
+        ${stopaHTML(krok.id)}
         ${krok.body ? `<ul class="seznam" style="margin-top:1rem">${krok.body.map(b => `<li>${b}</li>`).join('')}</ul>` : ''}
         ${krok.dvestrany ? `<div class="dve-strany" style="margin-top:1.2rem">${dveStranyHTML()}</div>` : ''}
         ${patkaKroku(m, k)}
@@ -256,6 +310,7 @@ function krokText(m, k, krok) {
       </div>
     </div>`);
   navazPatku(m, k);
+  navazStopu(krok.id);
 }
 
 /* ---- ukázka ---- */
@@ -307,6 +362,7 @@ function krokSignaly(m, k, krok) {
       <div>
         <h1>${krok.nazev}</h1>
         <p style="margin-top:.6rem">${krok.uvod}</p>
+        ${stopaHTML(krok.id)}
         <div id="seznamSignalu" style="margin-top:1rem"></div>
         <div id="vzkazSignaly"></div>
         ${patkaKroku(m, k)}
@@ -335,6 +391,7 @@ function krokSignaly(m, k, krok) {
   }));
   vzkazSignaly();
   navazPatku(m, k);
+  navazStopu(krok.id);
 }
 
 function vzkazSignaly() {
@@ -357,6 +414,7 @@ function krokKontakty(m, k, krok) {
     ${hlavicka(m, k)}
     <h1>${krok.nazev}</h1>
     <p class="poznamka">Čtyři možnosti, které AI nenahradí. Vyberte tu, která je vám teď nejblíž.</p>
+    ${stopaHTML(krok.id)}
     <div class="mrizka-2" style="margin-top:1.2rem">
       ${KOMU_ZAVOLAT.map(x => `
         <div class="kontakt">
@@ -374,6 +432,7 @@ function krokKontakty(m, k, krok) {
     </div>
     ${patkaKroku(m, k, 'Na závěr a test')}`);
   navazPatku(m, k);
+  navazStopu(krok.id);
 }
 
 /* ---- čtyři zásady ---- */
@@ -387,6 +446,7 @@ function krokZasady(m, k, krok) {
         <p class="poznamka" style="margin-top:.3rem">Prošli jsme spolu, co rozhovor s AI přináší a kde zavádí. Zbývají čtyři věty, které stojí za zapamatování. Z nich vychází i závěrečný test.</p>
       </div>
     </div>
+    ${stopaHTML(krok.id)}
     <div class="mrizka-2" style="margin-top:1rem">
       ${ZASADY.map(z => `
         <div class="zasada">
@@ -398,6 +458,7 @@ function krokZasady(m, k, krok) {
     </div>
     ${patkaKroku(m, k, 'Spustit test')}`);
   navazPatku(m, k);
+  navazStopu(krok.id);
 }
 
 /* ------------------------- závěrečný test ------------------------- */

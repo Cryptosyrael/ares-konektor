@@ -17,6 +17,7 @@ Stačí otevřít `index.html` v prohlížeči nebo nahrát složku `kurz/` na l
 | **Varovné signály** | zaškrtávací seznam s odkazem na pomoc podle toho, co účastník označí |
 | **Kontakty** | linky pomoci na každé obrazovce, odkazy na Elbot a Centrum Elpida |
 | **SCORM** | hotový balíček pro Moodle a Elbot, hlásí splnění, skóre i rozdělaný postup |
+| **Namluvený výklad** | připravené místo i přehrávání, stopy stačí nakopírovat do `zvuk/` |
 
 ## Ukázky místo videí
 
@@ -27,6 +28,55 @@ nahlas a funguje i na pomalém připojení.
 
 Ovládání ukázky: přehrát/zastavit · převíjení (myší i šipkami) · titulky **CC** ·
 rychlost 1× / 0,75× / 0,5× · **Přepis** celého rozhovoru jako text.
+
+## Namluvený výklad (zvuk)
+
+Kurz umí přehrávat namluvený výklad. Je **nepovinný**: co není nahrané, se prostě
+nenabídne, a kurz běží dál jen s textem a syntetickým čtením nahlas.
+
+**Soubory patří do složky `zvuk/`.** Formát MP3, název přesně podle kroku:
+
+| stopa | kde se přehraje |
+|---|---|
+| `zvuk/m1-uvitani.mp3` | Modul 1 — Dobrý den, jsem Ozvěna |
+| `zvuk/m1-co-je-ai.mp3` | Modul 1 — Co je konverzační AI |
+| `zvuk/ukazka-1-1.mp3` | ukázka 1.1 Odkud se berou slova |
+| `zvuk/m1-dve-strany.mp3` | Modul 1 — Dvě strany téhož rozhovoru |
+| `zvuk/m2-uvod.mp3` | Modul 2 — Tři způsoby, jak vás AI zavede |
+| `zvuk/ukazka-2-1.mp3` | ukázka 2.1 Přitakávač |
+| `zvuk/ukazka-2-2.mp3` | ukázka 2.2 Sebejistý omyl |
+| `zvuk/ukazka-2-3.mp3` | ukázka 2.3 Falešný přítel |
+| `zvuk/m2-shrnuti.mp3` | Modul 2 — Co si z modulu odnést |
+| `zvuk/ukazka-3-1.mp3` | ukázka 3.1 Když AI nestačí |
+| `zvuk/m3-signaly.mp3` | Modul 3 — Varovné signály |
+| `zvuk/ukazka-3-2.mp3` | ukázka 3.2 První krok |
+| `zvuk/m3-kontakty.mp3` | Modul 3 — Kdo co nabízí |
+| `zvuk/m4-zasady.mp3` | Modul 4 — Čtyři zásady |
+
+Nahrávat se dá po částech, pořadí nerozhoduje. Do SCORM balíčku se stopy
+přibalí samy — po přidání zvuku jen znovu spusťte `zabalit-scorm.py`.
+
+**Co se má namluvit,** je v `zvuk/scenar.md`: ke každé stopě text i časy.
+Soubor vzniká z `obsah.js`, takže se po úpravě textů obnovuje:
+
+```
+node vypsat-scenar.js
+```
+
+### Jak se stopy chovají
+
+- **U textových obrazovek** přibude tlačítko *Poslechnout výklad* s délkou stopy.
+- **U ukázek** běží výklad spolu s ukázkou: zastaví se s ní, převíjí se s ní
+  i zpomaluje. V ovládání přibude tlačítko, kterým jde výklad vypnout.
+- Při odchodu na jinou obrazovku se zvuk sám zastaví a dva hlasy se nepřekrývají
+  — spuštění stopy umlčí syntetické čtení nahlas.
+
+Dokud stopa chybí, kurz se po ní jednou podívá a v konzoli prohlížeče zůstane
+404. Na chod to nemá vliv, účastník nic nepozná a po nahrání stopy to zmizí.
+
+Aby šel zvuk u ukázek převíjet, musí server odpovídat na `Range` požadavky.
+Běžné hostingy i Moodle to umí; nejjednodušší `python3 -m http.server` ne —
+tam se ukázka převine, ale zvuk zůstane stát.
 
 ## Přístupnost
 
@@ -49,6 +99,8 @@ kurz/
 ├── kurz.js            logika kurzu, test, ukládání postupu
 ├── scorm.js           propojení s LMS (mimo LMS se nic neděje)
 ├── obrazky/           logo Elpidy, zdrojová PDF ve zdroj/
+├── zvuk/              namluvený výklad + scenar.md s texty ke čtení
+├── vypsat-scenar.js   obnoví zvuk/scenar.md podle obsah.js
 ├── zabalit-scorm.py   vytvoří SCORM balíček
 ├── test-lms.html      zkušební LMS pro ověření bez Moodlu
 └── dist/              hotové SCORM balíčky k nahrání

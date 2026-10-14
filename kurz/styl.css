@@ -294,3 +294,10 @@ html[data-pohyb="vypnuto"] * { animation: none !important; transition: none !imp
   .obsah { max-width: none; padding: 0; }
   a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .8em; color: #555; }
 }
+
+/* ---------- namluvený výklad ---------- */
+.stopa { display: flex; align-items: center; gap: .8rem; margin: 1rem 0; flex-wrap: wrap; }
+.stopa-hrat { padding: .55rem 1.1rem; font-size: .92rem; }
+.stopa-ikona { font-size: .9em; }
+.stopa-cas { font-size: .85rem; color: var(--seda); font-variant-numeric: tabular-nums; }
+@media print { .stopa { display: none; } }

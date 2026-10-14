@@ -17,13 +17,23 @@ KOREN = Path(__file__).resolve().parent
 ID = 'cz.elpida.stroj-ktery-nasloucha'
 NAZEV = 'Stroj, který naslouchá'
 
-# Co patří do balíčku. Zdrojová PDF log, README ani tento skript ne.
-SOUBORY = [
+# Co patří do balíčku. Zdrojová PDF log, návody ani skripty ne.
+ZAKLAD = [
     'index.html', 'styl.css',
     'scorm.js', 'obsah.js', 'ozvena.js', 'prehravac.js', 'kurz.js',
     'obrazky/elpida-logo.svg', 'obrazky/elpida-logo-cb.svg',
     'obrazky/elpida-znak.svg', 'obrazky/elpida-znak.png',
 ]
+# Namluvený výklad: přibalí se všechno, co ve složce zvuk/ zrovna leží.
+ZVUK_PRIPONY = ('.mp3', '.m4a', '.ogg', '.wav')
+
+
+def soubory() -> list:
+    zvuk = sorted(
+        'zvuk/' + s.name for s in (KOREN / 'zvuk').glob('*')
+        if s.is_file() and s.suffix.lower() in ZVUK_PRIPONY
+    )
+    return ZAKLAD + zvuk
 
 
 def hranice_v_procentech() -> int:
@@ -108,7 +118,8 @@ def manifest(soubory, scorm2004: bool, mastery: int) -> str:
 def main() -> int:
     scorm2004 = '--2004' in sys.argv
 
-    chybi = [s for s in SOUBORY if not (KOREN / s).is_file()]
+    SOUBORY = soubory()
+    chybi = [s for s in ZAKLAD if not (KOREN / s).is_file()]
     if chybi:
         print('Chybí soubory: ' + ', '.join(chybi), file=sys.stderr)
         return 1
@@ -122,9 +133,12 @@ def main() -> int:
         for s in SOUBORY:
             z.write(KOREN / s, s)
 
+    stop = len(SOUBORY) - len(ZAKLAD)
     print(f'Hotovo: {cil.relative_to(KOREN)}  ({cil.stat().st_size / 1024:.0f} kB, '
           f'{len(SOUBORY) + 1} souborů, SCORM {"2004 3rd Edition" if scorm2004 else "1.2"}, '
           f'hranice úspěšnosti {mastery} %)')
+    print(f'Zvukových stop v balíčku: {stop}'
+          + ('' if stop else '  — složka zvuk/ je prázdná, kurz poběží bez namluveného výkladu'))
     return 0
 
 

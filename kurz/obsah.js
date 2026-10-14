@@ -21,6 +21,13 @@ const KONFIG = {
   ]
 };
 
+/* Zvukové stopy: namluvený výklad. Soubory patří do složky zvuk/ a jmenují se
+   podle kroku, například zvuk/m1-uvitani.mp3 nebo zvuk/ukazka-2-2.mp3.
+   Co chybí, se prostě nenabídne — kurz běží dál. */
+const ZVUK_SLOZKA = 'zvuk/';
+const ZVUK_PRIPONA = '.mp3';
+function zvukSouboru(id) { return ZVUK_SLOZKA + String(id).replace(/\./g, '-') + ZVUK_PRIPONA; }
+
 /* Čtyři zásady, o které se kurz opírá (Metodika AI Linky seniorů, Elpida; APA Health Advisory 11/2025). */
 const ZASADY = [
   { c: 1, nazev: 'Ověřujte',
@@ -307,14 +314,14 @@ const MODULY = [
     c: 1, nazev: 'Kdo mi odpovídá?', cas: '7 min',
     shrnuti: 'Seznámení s průvodkyní. Co je konverzační AI, kde se s ní setkáte a proč zní tak lidsky, ačkoli nic neprožívá.',
     kroky: [
-      { typ: 'text', nalada: 'vita', nazev: 'Dobrý den, jsem Ozvěna',
+      { typ: 'text', id: 'm1-uvitani', nalada: 'vita', nazev: 'Dobrý den, jsem Ozvěna',
         uvod: 'Provedu vás tímto kurzem. Hned na začátku chci být poctivá: jsem program. Nejsem terapeutka ani vaše kamarádka. Umím vysvětlovat a ukazovat, cítit neumím nic.',
         body: [
           'Kurz trvá asi 45 minut a můžete ho kdykoli přerušit. Postup se vám uloží.',
           'Nebudu vám radit, jestli AI používat. Od toho jste tu vy.',
           'Když vám bude cokoli nepříjemné, dole na každé obrazovce najdete čísla, kde je člověk.'
         ] },
-      { typ: 'text', nalada: 'premysli', nazev: 'Co je konverzační AI',
+      { typ: 'text', id: 'm1-co-je-ai', nalada: 'premysli', nazev: 'Co je konverzační AI',
         uvod: 'Konverzační AI je program, který píše odpovědi v běžném jazyce. Znáte ho jako chatbot: ChatGPT, Copilot, Gemini nebo hlasového asistenta v telefonu.',
         body: [
           'Učil se z obrovského množství textů od lidí. Z nich zná, jaká slova po sobě obvykle jdou.',
@@ -323,7 +330,7 @@ const MODULY = [
           'Právě proto zní přirozeně a právě proto se umí sebejistě mýlit.'
         ] },
       { typ: 'ukazka', id: '1.1' },
-      { typ: 'text', nalada: 'vita', nazev: 'Dvě strany téhož rozhovoru',
+      { typ: 'text', id: 'm1-dve-strany', nalada: 'vita', nazev: 'Dvě strany téhož rozhovoru',
         uvod: 'Rozhovor s AI není ani zázrak, ani hrozba. V celém kurzu u každého tématu uvidíte obě strany.',
         dvestrany: true }
     ]
@@ -332,7 +339,7 @@ const MODULY = [
     c: 2, nazev: 'Když AI zmate', cas: '16 min',
     shrnuti: 'AI v roli posluchače, která přitakává, sebejistě si vymýšlí nebo předstírá přátelství. Po každé ukázce otázka: Čeho jste si všimli?',
     kroky: [
-      { typ: 'text', nalada: 'upozorni', nazev: 'Tři způsoby, jak vás AI zavede',
+      { typ: 'text', id: 'm2-uvod', nalada: 'upozorni', nazev: 'Tři způsoby, jak vás AI zavede',
         uvod: 'V následujících třech ukázkách dělá AI chyby záměrně. Ukázka se v klíčové chvíli zastaví a vy hledáte, co je špatně. Nejde o zkoušku, odpovědi si můžete opravit.',
         body: [
           'Přitakávač: dá vám za pravdu, i když se mýlíte.',
@@ -342,7 +349,7 @@ const MODULY = [
       { typ: 'ukazka', id: '2.1' },
       { typ: 'ukazka', id: '2.2' },
       { typ: 'ukazka', id: '2.3' },
-      { typ: 'text', nalada: 'premysli', nazev: 'Co si z modulu odnést',
+      { typ: 'text', id: 'm2-shrnuti', nalada: 'premysli', nazev: 'Co si z modulu odnést',
         uvod: 'Všechny tři ukázky měly jedno společné: zněly příjemně a důvěryhodně.',
         body: [
           'Příjemný tón není důkaz pravdy. Je to způsob, jakým je program napsaný.',
@@ -357,17 +364,17 @@ const MODULY = [
     shrnuti: 'Varovné signály, při kterých AI nestačí. Lékař, krizové linky a blízcí: kdo co nabízí a jak udělat první krok.',
     kroky: [
       { typ: 'ukazka', id: '3.1' },
-      { typ: 'signaly', nalada: 'zvazni', nazev: 'Varovné signály',
+      { typ: 'signaly', id: 'm3-signaly', nalada: 'zvazni', nazev: 'Varovné signály',
         uvod: 'Následující věty nejsou diagnóza. Jsou to situace, ve kterých je namístě obrátit se na člověka. Projděte si je v klidu a označte, co znáte ze své zkušenosti. Nikam se to neodesílá a nikdo se to nedozví.' },
       { typ: 'ukazka', id: '3.2' },
-      { typ: 'kontakty', nalada: 'vita', nazev: 'Kdo co nabízí' }
+      { typ: 'kontakty', id: 'm3-kontakty', nalada: 'vita', nazev: 'Kdo co nabízí' }
     ]
   },
   {
     c: 4, nazev: 'Závěr a test', cas: '11 min',
     shrnuti: 'Shrnutí s průvodkyní, čtyři zásady používání AI a závěrečný test. Test lze kdykoli opakovat.',
     kroky: [
-      { typ: 'zasady', nalada: 'vita', nazev: 'Čtyři zásady, které stačí si pamatovat' },
+      { typ: 'zasady', id: 'm4-zasady', nalada: 'vita', nazev: 'Čtyři zásady, které stačí si pamatovat' },
       { typ: 'test' }
     ]
   }

@@ -10,6 +10,18 @@ function Prehravac(ukazka, kam, panel, hotovo) {
   };
   let posledniTik = 0, raf = 0;
 
+  /* Namluvený výklad k ukázce. Hlavní hodiny zůstávají ve stopě ukázky,
+     zvuk se k nim jen přidržuje — kdyby chyběl, běží ukázka beze změny. */
+  const vyklad = new Audio();
+  vyklad.preload = 'auto';
+  let vykladJe = false, vykladZap = true;
+  vyklad.addEventListener('loadedmetadata', () => {
+    vykladJe = true;
+    const b = kam.querySelector('#btnZvuk');
+    if (b) b.classList.remove('skryte');
+  });
+  vyklad.addEventListener('error', () => { vykladJe = false; });
+
   kam.innerHTML = `
     <div class="prehravac">
       <div class="scena">
@@ -25,6 +37,7 @@ function Prehravac(ukazka, kam, panel, hotovo) {
         <div class="casova-osa" id="osa" role="slider" tabindex="0" aria-label="Čas v ukázce"
              aria-valuemin="0" aria-valuemax="${ukazka.delka}" aria-valuenow="0"><i id="osaVypln" style="width:0%"></i></div>
         <span class="cas" id="cas">0:00 / ${mmss(ukazka.delka)}</span>
+        <button id="btnZvuk" class="skryte" aria-pressed="true" title="Namluvený výklad">🔊</button>
         <button id="btnCC" aria-pressed="true" title="Titulky">CC</button>
         <button id="btnRychlost" title="Rychlost přehrávání">1×</button>
         <button id="btnPrepis" aria-pressed="false">Přepis</button>
@@ -143,6 +156,7 @@ function Prehravac(ukazka, kam, panel, hotovo) {
       if (!st.hraje) break;            // pauza zastavila přehrávání
     }
     titulek(); ukazatel();
+    if (vykladJe && vykladZap && !vyklad.paused) srovnejZvuk();   // drobné rozcházení
 
     if (st.cas >= ukazka.delka) { stop(); dokonci(); return; }
     raf = requestAnimationFrame(tik);
@@ -155,6 +169,26 @@ function Prehravac(ukazka, kam, panel, hotovo) {
     kam.querySelector('#osa').setAttribute('aria-valuenow', Math.round(st.cas));
   }
 
+  function zvukHraj() {
+    if (!vykladJe || !vykladZap) return;
+    vyklad.playbackRate = st.rychlost;
+    posledniSrovnani = 0; srovnejZvuk();
+    vyklad.play().catch(() => { vykladJe = false; });
+    prehravanyZvuk = vyklad;
+  }
+  function zvukStop() { if (vykladJe) vyklad.pause(); }
+  let posledniSrovnani = 0;
+  function srovnejZvuk() {
+    if (!vykladJe) return;
+    // Na serveru bez podpory Range nejde zvukem převíjet. Pokus by se pak
+    // opakoval při každém snímku, proto zkoušíme nejvýš jednou za sekundu.
+    const ted = performance.now();
+    if (ted - posledniSrovnani < 1000) return;
+    posledniSrovnani = ted;
+    try { if (Math.abs(vyklad.currentTime - st.cas) > 0.4) vyklad.currentTime = st.cas; }
+    catch (e) { /* stopa se ještě načítá, srovná se při spuštění */ }
+  }
+
   function prehraj(odPauzy) {
     if (!odPauzy && !st.pauzaVyresena) {
       const p = stopa.find(u => u.typ === 'pauza');
@@ -162,12 +196,15 @@ function Prehravac(ukazka, kam, panel, hotovo) {
     }
     if (odPauzy) st.cas += .1;
     st.hraje = true; ikona.textContent = '❚❚'; btnHrat.setAttribute('aria-label', 'Zastavit ukázku');
+    Nahlas.ticho();
+    zvukHraj();
     posledniTik = performance.now();
     raf = requestAnimationFrame(tik);
   }
 
   function stop() {
     st.hraje = false; cancelAnimationFrame(raf);
+    zvukStop();
     ikona.textContent = '▶'; btnHrat.setAttribute('aria-label', 'Přehrát ukázku');
   }
 
@@ -185,6 +222,7 @@ function Prehravac(ukazka, kam, panel, hotovo) {
   function previn(k) {
     stop();
     st.cas = Math.max(0, Math.min(k, ukazka.delka));
+    posledniSrovnani = 0; srovnejZvuk();
     st.dohrano = false;
     prekresliOdZacatku(); ukazatel();
   }
@@ -198,6 +236,14 @@ function Prehravac(ukazka, kam, panel, hotovo) {
   kam.querySelector('#btnRychlost').addEventListener('click', e => {
     st.rychlost = { 1: .75, .75: .5, .5: 1 }[st.rychlost];
     e.currentTarget.textContent = String(st.rychlost).replace('0.', '0,') + '×';
+    if (vykladJe) vyklad.playbackRate = st.rychlost;
+  });
+  kam.querySelector('#btnZvuk').addEventListener('click', e => {
+    vykladZap = !vykladZap;
+    e.currentTarget.setAttribute('aria-pressed', String(vykladZap));
+    e.currentTarget.textContent = vykladZap ? '🔊' : '🔇';
+    e.currentTarget.title = vykladZap ? 'Vypnout namluvený výklad' : 'Zapnout namluvený výklad';
+    if (!vykladZap) zvukStop(); else if (st.hraje) zvukHraj();
   });
   kam.querySelector('#btnPrepis').addEventListener('click', e => {
     const p = kam.querySelector('#prepis'), zap = p.classList.toggle('skryte');
@@ -215,6 +261,7 @@ function Prehravac(ukazka, kam, panel, hotovo) {
   });
 
   ukazatel();
+  vyklad.src = zvukSouboru('ukazka-' + ukazka.id);
   return { stop, prehraj, odpovezeno: () => st.odpovezeno };
 }
 
