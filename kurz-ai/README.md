@@ -21,7 +21,7 @@ stačí ji nahrát kamkoli na web (například zdarma na GitHub Pages).
 | `audio/zdroj/` | původní nahrávka klávesnice, ze které jsou smyčky vyrobené |
 | `audio/vadne-honza/` | vadné dodané soubory „Honzy“ — viz tamní `CTI-ME.md` |
 | `audio/honza-k-namluveni.md` | seznam Honzových replik a názvů souborů |
-| `audio/hlasy-k-doplneni.md` | co ještě chybí namluvit (teď nic), vzniká skriptem |
+| `audio/hlasy-k-doplneni.md` | co ještě chybí namluvit (čtyři věty o zásadách), vzniká skriptem |
 | `audio/zdroj/` | původní nahrávka klávesnice a `jak-vznikly-nahravky.md` |
 | `obrazky/` | logo Elpidy ve vektoru, zdrojová PDF ve `zdroj/` |
 | `scorm.js` | propojení s LMS; mimo LMS se nic neděje |
@@ -82,7 +82,7 @@ Do balíčku se nepřidává.
   Linky seniorů (800 200 007, každý den 8:00–20:00) a logo jsou doplněné.
   Vyhledejte je (Ctrl+F) v `content.js`, `app.js` a `index.html`.
 - **Hranice úspěšnosti testu** – v `content.js` řádek `hraniceTestu: 7`.
-- **Hlasy: namluveno je všechno** – Honza (27 replik), paní Jana (4), pan Tomáš (3), Ozvěna a chatbot (8 odpovědí).
+- **Hlasy: namluveno je téměř všechno (chybí čtyři věty Ozvěny o zásadách)** – Honza (27 replik), paní Jana (4), pan Tomáš (3), Ozvěna a chatbot (8 odpovědí).
   Kdyby někdy něco přibylo, seznam chybějících nahrávek (`audio/hlasy-k-doplneni.md`) se obnoví příkazem `node vypsat-chybejici-hlasy.js`. Nahrávky vznikly z exportů po odstavcích,
   viz `audio/zdroj/jak-vznikly-nahravky.md`. Dodané soubory `*-L*.mp3` byly vadné a jsou odstavené v `audio/vadne-honza/`.
 - **Nové nahrávky** – uložte je jako MP3 do složky `audio/` pod kódem repliky (například
@@ -155,6 +155,8 @@ Při prvním `push` se GitHub zeptá na přihlášení v okně prohlížeče.
 
 Kurz je interní kurz Elpidy a schvaluje se až po odevzdání. Zbývá hlavně poslechová kontrola:
 
+- namluvit čtyři krátké věty Ozvěny, které pojmenovávají zásady po pořadí videí (`2.1-O4`, `2.2-O5`, `2.3-O5`, `3.3-O2`),
+  texty jsou v `audio/zdroj/texty-zasady-k-namluveni.txt`; do té doby se zobrazí jen jako titulek,
 - poslechem ověřit nahrávky, zvlášť větu `1.1-L1` (název Elpida) a `3.3-L4` (pracovní doba): bez přepisu řeči nelze
   odsud ověřit, že už říkají skutečná slova a ne zástupný text,
 - kontaktní údaje Linky seniorů (800 200 007, každý den 8:00–20:00) potvrdit u Elpidy,

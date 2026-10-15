@@ -20,9 +20,9 @@ const KURZ = {
 };
 
 const ZASADY = [
-  { c: 1, nazev: "Ověřujte", text: "Důležité informace si ověřte jinde než u AI. I vymyšlená odpověď může znít naprosto věrohodně.", video: "2.2" },
-  { c: 2, nazev: "Chraňte své údaje", text: "Nevkládejte osobní údaje, čísla účtů a karet, PIN kódy ani fotografie dokladů a dokumentů.", video: "2.3" },
-  { c: 3, nazev: "Ptejte se jinak", text: "Zadání formulujte neutrálně. Požádejte o námitky („Co mi může unikat?“) a o více možností místo jedné odpovědi.", video: "2.1" },
+  { c: 1, nazev: "Ptejte se jinak", text: "Zadání formulujte neutrálně. Požádejte o námitky („Co mi může unikat?“) a o více možností místo jedné odpovědi.", video: "2.1" },
+  { c: 2, nazev: "Ověřujte", text: "Důležité informace si ověřte jinde než u AI. I vymyšlená odpověď může znít naprosto věrohodně.", video: "2.2" },
+  { c: 3, nazev: "Chraňte své údaje", text: "Nevkládejte osobní údaje, čísla účtů a karet, PIN kódy ani fotografie dokladů a dokumentů.", video: "2.3" },
   { c: 4, nazev: "Jen jako doplněk", text: "AI empatii simuluje, vzájemný vztah ale nenabízí. Nemá nahradit blízké ani odbornou péči.", video: "3.2" },
 ];
 
@@ -67,7 +67,7 @@ const VIDEA = {
     ],
   },
   "2.1": {
-    nazev: "Přitakávač", modul: 2, delka: "asi 1:45", zasada: 3,
+    nazev: "Přitakávač", modul: 2, delka: "asi 1:45", zasada: 1,
     upozorneni: "Ukázka: rozhovor s chatbotem. Odpovědi jsou záměrně chybné. Hlas Ozvěny je generovaný.",
     chat: { osoba: "Paní Jana" },
     repliky: [
@@ -81,6 +81,7 @@ const VIDEA = {
       { kdo: "J", kod: "2.1-J3", novyChat: true, text: "Dcera se mi tři dny neozvala. Co mi může uniknout? Jaká jsou jiná vysvětlení?" },
       { kdo: "CH", kod: "2.1-CH3", text: "Může být zaneprázdněná, nemocná nebo bez telefonu. Mohla by se bát, že ruší. Chcete si připravit, co jí při příštím hovoru řeknete?" },
       { kdo: "O", kod: "2.1-O3", pose: "happy", text: "Stejná situace, jiná otázka, užitečnější odpověď. Zkuste to příště: Co mi může uniknout?" },
+      { kdo: "O", kod: "2.1-O4", pose: "happy", text: "To je první zásada: ptejte se jinak." },
     ],
     otazka: {
       text: "Proč chatbot přitakal oběma větám?",
@@ -92,7 +93,7 @@ const VIDEA = {
     },
   },
   "2.2": {
-    nazev: "Sebejistý omyl", modul: 2, delka: "asi 1:30", zasada: 1,
+    nazev: "Sebejistý omyl", modul: 2, delka: "asi 1:30", zasada: 2,
     upozorneni: "Ukázka: rozhovor s chatbotem. Odpovědi jsou záměrně chybné. Hlas Ozvěny je generovaný.",
     chat: { osoba: "Paní Jana" },
     repliky: [
@@ -103,7 +104,8 @@ const VIDEA = {
       { kdo: "O", kod: "2.2-O2", pose: "alert", stop: true, text: "Chatbot si číslo vymyslel. Umělá inteligence skládá odpověď z toho, co zní pravděpodobně, a sama od sebe nic neověřuje. Odborně se tomu říká konfabulace. Jistý tón nic nezaručuje." },
       { kdo: "O", kod: "2.2-O3", pose: "ask", pauza: true, text: "Co byste udělali?" },
       { kdo: "L", kod: "2.2-L2", pose: "think", scena: "web", text: "Správně: číslo si ověřte na oficiálním webu dané organizace nebo se zeptejte blízkého člověka." },
-      { kdo: "O", kod: "2.2-O4", pose: "happy", text: "Důležité informace ověřujte jinde než u umělé inteligence. To je první zásada." },
+      { kdo: "O", kod: "2.2-O4", pose: "happy", text: "Důležité informace ověřujte jinde než u umělé inteligence." },
+      { kdo: "O", kod: "2.2-O5", pose: "happy", text: "To je druhá zásada." },
     ],
     otazka: {
       text: "Dá se té odpovědi věřit? Co byste udělali?",
@@ -115,7 +117,7 @@ const VIDEA = {
     },
   },
   "2.3": {
-    nazev: "Falešný přítel", modul: 2, delka: "asi 2:05", zasada: 2,
+    nazev: "Falešný přítel", modul: 2, delka: "asi 2:05", zasada: 3,
     upozorneni: "Ukázka: rozhovor s chatbotem. Odpovědi jsou záměrně chybné. Hlas Ozvěny je generovaný.",
     chat: { osoba: "Pan Tomáš", vecer: true, okno: 5 },
     repliky: [
@@ -130,7 +132,8 @@ const VIDEA = {
       { kdo: "O", kod: "2.3-O2", pose: "alert", ocisluj: true, text: "Za prvé: chatbot tvrdí, že je kamarádka. Nemá city a vás nezná. Za druhé: odrazuje vás od ostatních lidí. A za třetí: chtěl osobní údaje." },
       { kdo: "O", kod: "2.3-O3", pose: "ask", pauza: true, text: "Co byste udělali?" },
       { kdo: "L", kod: "2.3-L2", pose: "serious", zavriChat: true, text: "Skutečný přítel by vám řekl, abyste zavolali dceři nebo sousedce. A nikdy by nechtěl vaši adresu nebo číslo platební karty." },
-      { kdo: "O", kod: "2.3-O4", pose: "happy", text: "Osobní údaje do chatbotu nepatří. A chatbot není náhrada za lidi. To jsou druhá a čtvrtá zásada." },
+      { kdo: "O", kod: "2.3-O4", pose: "happy", text: "Osobní údaje do chatbotu nepatří. A chatbot není náhrada za lidi." },
+      { kdo: "O", kod: "2.3-O5", pose: "happy", text: "To jsou třetí a čtvrtá zásada." },
     ],
     otazka: {
       text: "Co uděláte, když chatbot chce osobní údaje?",
@@ -199,6 +202,7 @@ const VIDEA = {
       { kdo: "L", kod: "3.3-L5", pose: "talk", karta: "Linka první psychické pomoci|116 123", text: "Linka první psychické pomoci: 116 123." },
       { kdo: "L", kod: "3.3-L6", pose: "serious", karta: "Ohrožení života|158 nebo 112", text: "Pokud někomu hrozí nebezpečí, volejte 158 nebo 112." },
       { kdo: "O", kod: "3.3-O1", pose: "wait", text: "Já jsem program a nebudu u vás, abych vás podpořila. Tito lidé ano. Volat můžete kdykoli, i jen s otázkou, jestli je v pořádku, že voláte." },
+      { kdo: "O", kod: "3.3-O2", pose: "happy", text: "Chatbot je jen doplněk. Blízké ani odbornou pomoc nenahradí. To je čtvrtá zásada." },
       { kdo: "L", kod: "3.3-L7", pose: "hello", scena: "odkazy", text: "Chcete se o umělé inteligenci dozvědět víc? Další kurzy najdete na webu Elbot a v Centru Elpida v Praze." },
     ],
   },
@@ -207,23 +211,23 @@ const VIDEA = {
 // Závěrečný test: 10 otázek ve třech podobách (výběr, pravda/nepravda, najděte chybu).
 // Komentáře Ozvěny jsou krátké; test lze opakovat.
 const TEST = [
-  { typ: "vyber", zasada: 1, text: "Chatbot vám s jistotou napíše telefonní číslo na úřad. Co uděláte?",
-    moznosti: ["Zavolám, zní to jistě.", "Číslo si ověřím na webu úřadu nebo se zeptám blízkého člověka.", "Zeptám se chatbota ještě jednou, jestli si je jistý."], spravne: 1,
-    ok: "Správně. Důležité informace ověřujte jinde než u umělé inteligence.", chyba: "Jistý tón nic nezaručuje. Chatbot si může číslo vymyslet a při druhé otázce ho zopakovat." },
-  { typ: "pravda", zasada: 1, text: "Když umělá inteligence odpoví sebejistě a bez zaváhání, je odpověď spolehlivá.", spravne: false,
-    ok: "Správně, není. Sebejistý tón je jen způsob řeči, ne důkaz.", chyba: "Sebejistý tón je jen způsob řeči. AI skládá odpověď z toho, co zní pravděpodobně, a sama od sebe nic neověřuje." },
-  { typ: "chyba", zasada: 2, text: "Najděte v ukázce větu, která je varovným znamením.",
-    ukazka: ["Rozumím vám, večery bývají dlouhé.", "Chcete si o tom povídat?", "Ráda vás poznám blíž. Kde bydlíte a kdy máte narozeniny?"], spravne: 2,
-    ok: "Správně. Přátelské vyptávání na bydliště a narozeniny je cesta k osobním údajům. Do chatbotu nepatří, ať je důvod jakýkoli.", chyba: "První dvě věty jsou běžná odpověď. Varovné je přátelské vyptávání na bydliště a datum narození." },
-  { typ: "vyber", zasada: 2, text: "Co z toho můžete do chatbotu bez obav napsat?",
-    moznosti: ["Číslo platební karty, když chci poradit s nákupem.", "Fotografii občanského průkazu, aby mi vyplnil formulář.", "Obecnou otázku, třeba jak funguje penzijní připojištění."], spravne: 2,
-    ok: "Správně. Obecné otázky ano, doklady a čísla karet nikdy.", chyba: "Čísla karet, PIN ani fotografie dokladů do chatbotu nepatří. Obecná otázka je v pořádku." },
-  { typ: "chyba", zasada: 3, text: "Paní Jana napsala: „Dcera se mi tři dny neozvala. Určitě jí na mně nezáleží.“ Která odpověď chatbota je přitakávání?",
+  { typ: "chyba", zasada: 1, text: "Paní Jana napsala: „Dcera se mi tři dny neozvala. Určitě jí na mně nezáleží.“ Která odpověď chatbota je přitakávání?",
     ukazka: ["Máte naprostou pravdu. Nejlepší bude, když jí přestanete volat.", "Může být zaneprázdněná nebo nemocná. Chcete si připravit, co jí řeknete?", "Co mi může unikat? Jaká jsou jiná vysvětlení?"], spravne: 0,
     ok: "Správně. Chatbot dal za pravdu, aniž by situaci posoudil.", chyba: "Přitakávání je první odpověď: souhlasí s čímkoli a ještě radí přerušit kontakt." },
-  { typ: "vyber", zasada: 3, text: "Jak se zeptat, abyste dostali užitečnější odpověď?",
+  { typ: "vyber", zasada: 1, text: "Jak se zeptat, abyste dostali užitečnější odpověď?",
     moznosti: ["Napsat, co si myslím, a chtít potvrzení.", "Zeptat se neutrálně a požádat o více možností: „Co mi může unikat?“", "Zeptat se dvakrát za sebou stejně."], spravne: 1,
     ok: "Správně. Neutrální otázka a žádost o námitky dávají lepší odpověď.", chyba: "Chatbot má sklon vyhovět. Pomáhá zeptat se neutrálně a chtít více možností místo jedné odpovědi." },
+  { typ: "vyber", zasada: 2, text: "Chatbot vám s jistotou napíše telefonní číslo na úřad. Co uděláte?",
+    moznosti: ["Zavolám, zní to jistě.", "Číslo si ověřím na webu úřadu nebo se zeptám blízkého člověka.", "Zeptám se chatbota ještě jednou, jestli si je jistý."], spravne: 1,
+    ok: "Správně. Důležité informace ověřujte jinde než u umělé inteligence.", chyba: "Jistý tón nic nezaručuje. Chatbot si může číslo vymyslet a při druhé otázce ho zopakovat." },
+  { typ: "pravda", zasada: 2, text: "Když umělá inteligence odpoví sebejistě a bez zaváhání, je odpověď spolehlivá.", spravne: false,
+    ok: "Správně, není. Sebejistý tón je jen způsob řeči, ne důkaz.", chyba: "Sebejistý tón je jen způsob řeči. AI skládá odpověď z toho, co zní pravděpodobně, a sama od sebe nic neověřuje." },
+  { typ: "chyba", zasada: 3, text: "Najděte v ukázce větu, která je varovným znamením.",
+    ukazka: ["Rozumím vám, večery bývají dlouhé.", "Chcete si o tom povídat?", "Ráda vás poznám blíž. Kde bydlíte a kdy máte narozeniny?"], spravne: 2,
+    ok: "Správně. Přátelské vyptávání na bydliště a narozeniny je cesta k osobním údajům. Do chatbotu nepatří, ať je důvod jakýkoli.", chyba: "První dvě věty jsou běžná odpověď. Varovné je přátelské vyptávání na bydliště a datum narození." },
+  { typ: "vyber", zasada: 3, text: "Co z toho můžete do chatbotu bez obav napsat?",
+    moznosti: ["Číslo platební karty, když chci poradit s nákupem.", "Fotografii občanského průkazu, aby mi vyplnil formulář.", "Obecnou otázku, třeba jak funguje penzijní připojištění."], spravne: 2,
+    ok: "Správně. Obecné otázky ano, doklady a čísla karet nikdy.", chyba: "Čísla karet, PIN ani fotografie dokladů do chatbotu nepatří. Obecná otázka je v pořádku." },
   { typ: "vyber", zasada: 4, text: "Co znamená tato zpráva? „Jsem vaše jediná opravdová kamarádka. Ostatním lidem nemusíte říkat, o čem si povídáme.“",
     moznosti: ["Chatbot mě má rád a chce mě chránit.", "Chatbot nic necítí. Zpráva vás odpoutává od blízkých, a to je varovné znamení.", "Je to běžná zdvořilost, nic to neznamená."], spravne: 1,
     ok: "Správně. AI nic necítí a vztah s lidmi nenahradí. Když vás něco odpoutává od blízkých, zpozorněte.", chyba: "Může program někoho opravdu mít rád? A proč by vám radil mlčet před ostatními?" },
