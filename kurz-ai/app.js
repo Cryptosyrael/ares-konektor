@@ -298,8 +298,8 @@
       if (token !== this.cancelToken) return;
       let ms = odhadSekund(r.text) * 1000;
       if (voice) { ms = (voice.duration || ms / 1000) * 1000; this.audio = voice; voice.currentTime = 0; voice.play().catch(() => {}); }
-      // ťukání zní pod každým psaním člověka, stejně hlasitě s hlasem i bez něj
-      this.startLoop("smycka-pomalu-10s", 0.35);
+      // ťukání zní pod každým psaním člověka; hlasitost je zapečená v souboru (iPad hlasitost v kódu ignoruje)
+      this.startLoop("smycka-pomalu-10s", 1);
       await this.typeInto(m, r.text, ms * 0.9, token);
       this.stopLoop();
       if (voice && !voice.ended) await new Promise((res) => { voice.onended = res; this.timers.push(setTimeout(res, 4000)); });
@@ -314,18 +314,27 @@
       const m = el("div", { class: "msg bot" }, el("span", { class: "who" }, "Chatbot"));
       if (r.cislo) m.dataset.cislo = r.cislo;
       body.append(m); this.trimChat();
-      const tuk = await loadAudio(r.kod);
+      const tuk = await loadAudio(r.kod);               // ťukání do klávesnice: KÓD.mp3
+      const hlas = await loadAudio(r.kod + "-hlas");    // hlas chatbota: KÓD-hlas.mp3 (nepovinný)
       if (token !== this.cancelToken) return;
       let ms = odhadSekund(r.text) * 900;
-      if (tuk) { ms = (tuk.duration || ms / 1000) * 1000; this.audio = tuk; tuk.currentTime = 0; tuk.play().catch(() => {}); }
-      // soubor KÓD-CH*.mp3 je samo ťukání chatbota; smyčka hraje jen jako náhrada, když soubor chybí
-      else this.startLoop("smycka-10s", 0.35);
+      if (hlas) {
+        // hlas čte odpověď a psaní se řídí jeho délkou; pod ním ťuká klávesnice ve smyčce, dokud chatbot píše
+        ms = (hlas.duration || ms / 1000) * 1000 * 0.9;
+        this.audio = hlas; hlas.currentTime = 0; hlas.play().catch(() => {});
+        this.startLoop(tuk ? r.kod : "smycka-10s", 1);
+      } else if (tuk) {
+        ms = (tuk.duration || ms / 1000) * 1000; this.audio = tuk; tuk.currentTime = 0; tuk.play().catch(() => {});
+      } else this.startLoop("smycka-10s", 1);          // náhrada, když chybí obojí
       await this.typeInto(m, r.text, ms, token, r.zvyrazni);
-      this.stopLoop(); if (this.audio === tuk && tuk) { tuk.pause(); } this.audio = null;
+      this.stopLoop();
+      if (hlas && this.audio === hlas) { if (!hlas.ended) await new Promise((res) => { hlas.onended = res; this.timers.push(setTimeout(res, 4000)); }); }
+      else if (this.audio === tuk && tuk) tuk.pause();
+      this.audio = null;
       if (r.razitko) { m.append(el("span", { class: "razitko" }, r.razitko)); }
       await this.wait(1200, token);
     }
-    trimChat() { while (this.chatBody && this.chatBody.children.length > 4) this.chatBody.firstChild.remove(); }
+    trimChat() { const max = (this.v.chat && this.v.chat.okno) || 4; while (this.chatBody && this.chatBody.children.length > max) this.chatBody.firstChild.remove(); }
     startLoop(kod, vol) {
       loadAudio(kod).then((a) => { if (!a || this.loopStopped) return; this.loopAudio = a; a.loop = true; a.volume = vol; a.currentTime = 0; a.play().catch(() => {}); });
       this.loopStopped = false;

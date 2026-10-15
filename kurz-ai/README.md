@@ -21,9 +21,11 @@ stačí ji nahrát kamkoli na web (například zdarma na GitHub Pages).
 | `audio/zdroj/` | původní nahrávka klávesnice, ze které jsou smyčky vyrobené |
 | `audio/vadne-honza/` | vadné dodané soubory „Honzy“ — viz tamní `CTI-ME.md` |
 | `audio/honza-k-namluveni.md` | seznam Honzových replik a názvů souborů |
+| `audio/hlasy-k-doplneni.md` | co ještě chybí namluvit (hlas chatbota, 2 repliky Tomáše), vzniká skriptem |
 | `audio/zdroj/` | původní nahrávka klávesnice a `jak-vznikly-nahravky.md` |
 | `obrazky/` | logo Elpidy ve vektoru, zdrojová PDF ve `zdroj/` |
 | `scorm.js` | propojení s LMS; mimo LMS se nic neděje |
+| `vypsat-chybejici-hlasy.js` | obnoví seznam chybějících nahrávek |
 | `zabalit-scorm.py` | vytvoří SCORM balíček do `dist/` |
 | `test-lms.html` | zkušební LMS pro ověření bez Moodlu |
 
@@ -80,8 +82,10 @@ Do balíčku se nepřidává.
   `[JMÉNO GARANTA]`, `[PRACOVNÍ DOBA]`, `[TELEFON]`, `[LOGO]`.
   Vyhledejte je (Ctrl+F) v `content.js`, `app.js` a `index.html`.
 - **Hranice úspěšnosti testu** – v `content.js` řádek `hraniceTestu: 7`.
-- **Hlasy jsou kompletní.** Honza (21 replik), paní Jana (4) i pan Tomáš (1) jsou namluvené;
-  nahrávky vznikly z exportu po odstavcích, viz `audio/zdroj/jak-vznikly-nahravky.md`.
+- **Hlasy: namluveno je Honza (21 replik), paní Jana (4), pan Tomáš (1) a Ozvěna.** Chybí hlas chatbota
+  (8 odpovědí) a dvě nové repliky pana Tomáše (`2.3-T2`, `2.3-T3`). Co přesně a pod jakým názvem
+  uložit, je v `audio/hlasy-k-doplneni.md`; seznam se obnoví příkazem `node vypsat-chybejici-hlasy.js`.
+  Nahrávky Honzy, Jany a Tomáše vznikly z exportu po odstavcích, viz `audio/zdroj/jak-vznikly-nahravky.md`.
   Dodané soubory `*-L*.mp3` byly vadné a jsou odstavené v `audio/vadne-honza/`.
 - **Nové nahrávky** – uložte je jako MP3 do složky `audio/` pod kódem repliky (například
   `2.1-J1.mp3`). Aplikace je najde sama; co chybí, se jen zobrazí jako text.
@@ -90,11 +94,13 @@ Do balíčku se nepřidává.
   strojově až agresivně (původní jsou uschované v `audio/zdroj/chatbot-puvodni/`). Nové vznikly
   z reálné nahrávky klávesnice (`audio/zdroj/klavesnice.mp3`): skládají se z jejích frází
   v náhodném pořadí s mírně měněným tempem, takže se zvuk neopakuje. Mají přesně stejné délky
-  jako původní, protože podle nich se načasuje psaní. Hlasitost −25 LUFS (hlasy mají −18),
-  špičky omezeny na −6 dB, vysoké tóny mírně zjemněny.
+  jako původní, protože podle nich se načasuje psaní. Hlasitost je o polovinu nižší než původně
+  (−31,8 LUFS, hlasy mají −18), špičky omezeny na −12 dB, vysoké tóny mírně zjemněny. Ztlumení je
+  zapečené přímo v souborech, protože iPad hlasitost nastavenou v kódu ignoruje.
+- **Hlas chatbota** je volitelný soubor `KÓD-hlas.mp3` (například `2.1-CH1-hlas.mp3`). Když existuje,
+  chatbot odpověď přečte, psaní se řídí délkou hlasu a pod ním ťuká klávesnice. Bez něj chatbot jen ťuká.
 - **Ťukání člověka** (paní Jana, pan Tomáš) zní jako smyčka `smycka-pomalu-10s.mp3` pod jejich hlasem.
-  Smyčky jsou bezešvé a vyrobené z téže nahrávky klávesnice, hlasitost se nastavuje v `app.js`
-  u volání `startLoop`.
+  Smyčky jsou bezešvé, vyrobené z téže nahrávky klávesnice a také o polovinu tišší než dříve.
 - **Vzhled postav** – `characters.js` je generovaný soubor; ruční úpravy jsou možné,
   ale snazší je poslat požadavek na změnu (např. jiný účes) a soubor nechat přegenerovat.
 
@@ -160,3 +166,9 @@ Při prvním `push` se GitHub zeptá na přihlášení v okně prohlížeče.
 Velikost písma (tři stupně), předčítání stránky hlasem prohlížeče, titulky a přepis
 u každého videa, vypnutí pohybu, ovládání klávesnicí, kontakty na pomoc na každé
 obrazovce. Postup kurzem se ukládá jen v prohlížeči účastníka, nikam se neodesílá.
+
+
+## Známá omezení
+
+- **Telefon:** animované plátno videí je na šířce kolem 390 px stísněné a rozhovor v chatu se tam zobrazí jen zčásti.
+  Na tabletu a počítači je to v pořádku. Kurz je proto vhodnější pro větší obrazovky.
