@@ -318,8 +318,8 @@
       if (token !== this.cancelToken) return;
       let ms = odhadSekund(r.text) * 900;
       if (tuk) { ms = (tuk.duration || ms / 1000) * 1000; this.audio = tuk; tuk.currentTime = 0; tuk.play().catch(() => {}); }
-      // ťukání zní pod každým psaním chatbota, stejně hlasitě s hlasem i bez něj
-      this.startLoop("smycka-10s", 0.6);
+      // soubor KÓD-CH*.mp3 je samo ťukání chatbota; smyčka hraje jen jako náhrada, když soubor chybí
+      else this.startLoop("smycka-10s", 0.35);
       await this.typeInto(m, r.text, ms, token, r.zvyrazni);
       this.stopLoop(); if (this.audio === tuk && tuk) { tuk.pause(); } this.audio = null;
       if (r.razitko) { m.append(el("span", { class: "razitko" }, r.razitko)); }

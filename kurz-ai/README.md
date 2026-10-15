@@ -15,9 +15,9 @@ stačí ji nahrát kamkoli na web (například zdarma na GitHub Pages).
 | `app.js` | logika: obrazovky, přehrávač videí, test, uložení postupu |
 | `content.js` | **veškerý text kurzu**: moduly, repliky videí, otázky, zásady, kontakty |
 | `characters.js` | kreslené postavy Honza a Ozvěna (SVG) |
-| `audio/` | nahrávky replik: `1.1-O1.mp3` = video 1.1, Ozvěna, 1. replika; `2.1-L1.mp3` = Honza; `2.1-CH1.mp3` = chatbot |
-| `audio/smycka-10s.mp3` | ťukání do klávesnice pod psaním chatbota |
-| `audio/smycka-pomalu-10s.mp3` | totéž pomaleji, pod psaním člověka |
+| `audio/` | nahrávky replik: `1.1-O1.mp3` = video 1.1, Ozvěna, 1. replika; `2.1-L1.mp3` = Honza; `2.1-CH1.mp3` = ťukání chatbota |
+| `audio/smycka-10s.mp3` | náhradní ťukání chatbota, hraje jen když chybí soubor `*-CH*.mp3` |
+| `audio/smycka-pomalu-10s.mp3` | ťukání pod psaním člověka (paní Jana, pan Tomáš) |
 | `audio/zdroj/` | původní nahrávka klávesnice, ze které jsou smyčky vyrobené |
 | `audio/vadne-honza/` | vadné dodané soubory „Honzy“ — viz tamní `CTI-ME.md` |
 | `audio/honza-k-namluveni.md` | seznam Honzových replik a názvů souborů |
@@ -85,13 +85,16 @@ Do balíčku se nepřidává.
   Dodané soubory `*-L*.mp3` byly vadné a jsou odstavené v `audio/vadne-honza/`.
 - **Nové nahrávky** – uložte je jako MP3 do složky `audio/` pod kódem repliky (například
   `2.1-J1.mp3`). Aplikace je najde sama; co chybí, se jen zobrazí jako text.
-- **Ťukání do klávesnice** zní pod každým psaním v chatu — u chatbota i u člověka.
-  S nahraným hlasem hraje tišeji (0,3 a 0,18), bez hlasu hlasitěji (0,6 a 0,35),
-  aby hlasu nekonkurovalo. Hlasitosti jsou v `app.js` u volání `startLoop`.
-- **Ťukání do klávesnice** – `smycka-10s.mp3` a `smycka-pomalu-10s.mp3` jsou bezešvé
-  smyčky vyrobené ze záznamu v `audio/zdroj/klavesnice.mp3`: konec se přelévá přes
-  začátek, aby na spoji neluplo. Obě trvají 10 s, stejně jako dřív, takže se nic
-  jiného upravovat nemusí.
+- **Ťukání chatbota** jsou soubory `KÓD-CH*.mp3` (například `2.1-CH1.mp3`). Původní dodané soubory
+  byly syntetické: stovky stejných ostrých cvaknutí s jasným pásmem kolem 3,5 kHz, což zní
+  strojově až agresivně (původní jsou uschované v `audio/zdroj/chatbot-puvodni/`). Nové vznikly
+  z reálné nahrávky klávesnice (`audio/zdroj/klavesnice.mp3`): skládají se z jejích frází
+  v náhodném pořadí s mírně měněným tempem, takže se zvuk neopakuje. Mají přesně stejné délky
+  jako původní, protože podle nich se načasuje psaní. Hlasitost −25 LUFS (hlasy mají −18),
+  špičky omezeny na −6 dB, vysoké tóny mírně zjemněny.
+- **Ťukání člověka** (paní Jana, pan Tomáš) zní jako smyčka `smycka-pomalu-10s.mp3` pod jejich hlasem.
+  Smyčky jsou bezešvé a vyrobené z téže nahrávky klávesnice, hlasitost se nastavuje v `app.js`
+  u volání `startLoop`.
 - **Vzhled postav** – `characters.js` je generovaný soubor; ruční úpravy jsou možné,
   ale snazší je poslat požadavek na změnu (např. jiný účes) a soubor nechat přegenerovat.
 
