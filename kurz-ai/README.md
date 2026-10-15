@@ -158,15 +158,14 @@ Při prvním `push` se GitHub zeptá na přihlášení v okně prohlížeče.
 Kurz je interní kurz Elpidy a schvaluje se až po odevzdání. Zbývá hlavně dokončit nahrávky:
 
 - namluvit chybějící repliky, seznam je v `audio/hlasy-k-doplneni.md` (dvě repliky pana Tomáše,
-  osm replik nového videa 3.2 a odpověď chatbota `2.2-CH1`, jejíž číslo se změnilo),
+  a osm replik nového videa 3.2),
 - poslechem ověřit nahrávky, zvlášť větu `1.1-L1` (název Elpida) a `3.3-L4` (pracovní doba): bez přepisu řeči nelze
   odsud ověřit, že už říkají skutečná slova a ne zástupný text,
 - kontaktní údaje Linky seniorů (800 200 007, každý den od osmi do dvaceti) potvrdit u Elpidy,
 - volitelně upřesnit poslední větu videa 3.1, která slibuje „kam zavolat, řekneme v dalším videu“.
 
 Video 3.2 („Když je hlava zahlcená“, pohled krizové intervence) je odsouhlasené ředitelkou Elpidy (podle sdělení zadavatelky).
-Číslo ve videu 2.2 je „023 034“. Začíná nulou a české telefonní číslo nulou nezačíná, takže by nemělo patřit žádné
-službě (starší „800 123 456“ patřilo, proto bylo nahrazeno).
+Číslo ve videu 2.2 je „800 003 034“ (ověřila zadavatelka; starší „800 123 456“ patřilo skutečné službě, proto bylo nahrazeno).
 
 ## Přístupnost
 
