@@ -11,5 +11,5 @@ Při přehrávání proto pod Honzovými titulky zněla Ozvěna a věty se pak o
 Soubory jsou tu jen pro dohledání; kurz je nenačítá (složka není v `audio/`
 napřímo) a do SCORM balíčku se nepřibalují.
 
-Správně nastříhaný Honza vznikl znovu z celé nahrávky, viz `../zdroj/honza-rezy.md`. Jeho repliky k namluvení
+Správné nahrávky vznikly z exportu po odstavcích, viz `../zdroj/jak-vznikly-nahravky.md`. Jeho repliky k namluvení
 jsou v `audio/honza-k-namluveni.md`.
