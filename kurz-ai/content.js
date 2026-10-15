@@ -5,13 +5,13 @@
 const KURZ = {
   nazev: "Stroj, který naslouchá",
   podtitul: "Umělá inteligence jako posluchač, rádce a společník: co dokáže a kde její možnosti končí.",
-  zadatel: "[NÁZEV ŽADATELE]",
+  zadatel: "Elpida",
   garant: "[JMÉNO GARANTA]",
   // Hranice úspěšnosti testu: určí odborný garant. Zatím 7 z 10.
   hraniceTestu: 7,
   kontakty: [
     { nazev: "Linka první psychické pomoci", cislo: "116 123", tel: "116123" },
-    { nazev: "Linka seniorů", cislo: "800 200 007", tel: "800200007", pozn: "[PRACOVNÍ DOBA]" },
+    { nazev: "Linka seniorů", cislo: "800 200 007", tel: "800200007", pozn: "každý den od osmi do dvaceti" },
     { nazev: "Záchranná služba", cislo: "155", tel: "155" },
   ],
   odkazy: [
@@ -59,7 +59,7 @@ const VIDEA = {
     nazev: "Seznamte se s Honzou a Ozvěnou", modul: 1, delka: "asi 1:40", zasada: null,
     upozorneni: "Hlas Honzy i Ozvěny je vytvořen počítačem.",
     repliky: [
-      { kdo: "L", kod: "1.1-L1", pose: "hello", scena: "titul", text: "Dobrý den, jmenuji se Honza a jsem z organizace [NÁZEV ŽADATELE]. Tento kurz vznikl, protože se s umělou inteligencí dnes baví stále víc lidí. Někteří jí svěřují i to, co nikomu jinému neřeknou." },
+      { kdo: "L", kod: "1.1-L1", pose: "hello", scena: "titul", text: "Dobrý den, jmenuji se Honza a jsem z organizace Elpida. Tento kurz vznikl, protože se s umělou inteligencí dnes baví stále víc lidí. Někteří jí svěřují i to, co nikomu jinému neřeknou." },
       { kdo: "L", kod: "1.1-L2", pose: "talk", text: "Kurzem vás společně se mnou provede Ozvěna. Dobrý den.", vstup: "ozvena" },
       { kdo: "O", kod: "1.1-O1", pose: "hello", text: "Dobrý den. Jsem Ozvěna a budu vás kurzem provázet. Hned na začátku vám o sobě řeknu to nejdůležitější: nejsem člověk. Jsem program. Nemám city a nepamatuji si, co jste mi řekli." },
       { kdo: "O", kod: "1.1-O2", pose: "wait", text: "Proč tedy kurz vedu? Protože právě takový program jste možná už zkoušeli. Může pomoci. A někdy může zmást. Ukážeme si obojí." },
@@ -196,7 +196,7 @@ const VIDEA = {
       { kdo: "L", kod: "3.3-L1", pose: "hello", text: "Dobrá zpráva: pomoc je blízko. Vždy je to člověk." },
       { kdo: "L", kod: "3.3-L2", pose: "talk", karta: "Blízký člověk|„Poslední dobou je mi těžko a potřebuji si promluvit.“", text: "Nejdřív zkuste někoho, komu věříte. Stačí jedna věta: Poslední dobou je mi těžko a potřebuji si promluvit." },
       { kdo: "L", kod: "3.3-L3", pose: "talk", karta: "Praktický lékař|Vyslechne vás a podle potřeby pošle k odborníkovi.", text: "Praktický lékař vás vyslyší a podle potřeby pošle k odborníkovi." },
-      { kdo: "L", kod: "3.3-L4", pose: "talk", karta: "Linka seniorů|800 200 007 · [PRACOVNÍ DOBA]", text: "Linka seniorů: 800 200 007. [PRACOVNÍ DOBA]" },
+      { kdo: "L", kod: "3.3-L4", pose: "talk", karta: "Linka seniorů|800 200 007 · každý den od osmi do dvaceti", text: "Linka seniorů: 800 200 007. Každý den od osmi do dvaceti." },
       { kdo: "L", kod: "3.3-L5", pose: "talk", karta: "Linka první psychické pomoci|116 123", text: "Linka první psychické pomoci: 116 123." },
       { kdo: "L", kod: "3.3-L6", pose: "serious", karta: "Ohrožení života|158 nebo 112", text: "Pokud někomu hrozí nebezpečí, volejte 158 nebo 112." },
       { kdo: "O", kod: "3.3-O1", pose: "wait", text: "Já jsem program a u vás nebudu. Tito lidé ano. Volat můžete kdykoli, i jen s otázkou, jestli je v pořádku, že voláte." },

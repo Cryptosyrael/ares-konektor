@@ -78,8 +78,9 @@ Do balíčku se nepřidává.
 
 - **Text kurzu nebo repliku ve videu** – otevřete `content.js` v Poznámkovém bloku
   (nebo lépe ve VS Code) a přepište text v uvozovkách. Nic jiného neměňte.
-- **Místa k doplnění** jsou v hranatých závorkách: `[NÁZEV ŽADATELE]`,
-  `[JMÉNO GARANTA]`, `[PRACOVNÍ DOBA]`, `[TELEFON]`, `[LOGO]`.
+- **Místa k doplnění** jsou v hranatých závorkách. Žadatel (Elpida), telefon a pracovní doba Linky seniorů
+  (800 200 007, každý den od osmi do dvaceti) a logo jsou doplněné; zbývá `[JMÉNO GARANTA]` a
+  `[PODOBA POTVRZENÍ SE URČÍ S GARANTEM]`.
   Vyhledejte je (Ctrl+F) v `content.js`, `app.js` a `index.html`.
 - **Hranice úspěšnosti testu** – v `content.js` řádek `hraniceTestu: 7`.
 - **Hlasy: namluveno je Honza (21 replik), paní Jana (4), pan Tomáš (1), Ozvěna a chatbot (8 odpovědí).**

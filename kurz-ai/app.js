@@ -447,7 +447,7 @@
     main.focus({ preventScroll: true });
   }
   function helpBox() {
-    return el("p", { class: "note cor", style: "margin-top:24px" }, el("b", {}, "Potřebujete poradit? "), "Zavolejte na [TELEFON] ([PRACOVNÍ DOBA]). Při krizi volejte člověka, ne program: ", KURZ.kontakty.map((k) => k.nazev + " " + k.cislo).join(", "), ".");
+    return el("p", { class: "note cor", style: "margin-top:24px" }, el("b", {}, "Potřebujete poradit? "), "Zavolejte na Linku seniorů " + KURZ.kontakty[1].cislo + " (" + KURZ.kontakty[1].pozn + "). Při krizi volejte člověka, ne program: ", KURZ.kontakty.map((k) => k.nazev + " " + k.cislo).join(", "), ".");
   }
 
   function viewUvod() {

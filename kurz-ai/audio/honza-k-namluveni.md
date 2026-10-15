@@ -11,7 +11,7 @@ Celkem 21 replik, **všech 21 hotových (✔)**. Podrobnosti: `zdroj/jak-vznikly
 
 ### audio/1.1-L1.mp3 
 
-Dobrý den, jmenuji se Honza a jsem z organizace [NÁZEV ŽADATELE]. Tento kurz vznikl, protože se s umělou inteligencí dnes baví stále víc lidí. Někteří jí svěřují i to, co nikomu jinému neřeknou.
+Dobrý den, jmenuji se Honza a jsem z organizace Elpida. Tento kurz vznikl, protože se s umělou inteligencí dnes baví stále víc lidí. Někteří jí svěřují i to, co nikomu jinému neřeknou.
 
 ### audio/1.1-L2.mp3 
 
@@ -89,7 +89,7 @@ Praktický lékař vás vyslyší a podle potřeby pošle k odborníkovi.
 
 ### audio/3.3-L4.mp3  ✔ hotovo
 
-Linka seniorů: 800 200 007. [PRACOVNÍ DOBA]
+Linka seniorů: 800 200 007. Každý den od osmi do dvaceti.
 
 ### audio/3.3-L5.mp3  ✔ hotovo
 
