@@ -1,4 +1,7 @@
-# Honza — repliky (všechny namluvené)
+# Honza — repliky, které už jsou namluvené
+
+> Nové video 3.2 „Když je hlava zahlcená“ (pohled krizové intervence) a další chybějící nahrávky jsou v `hlasy-k-doplneni.md`.
+> Původní video 3.2 se přečíslovalo na 3.3, proto se jeho soubory jmenují `3.3-…`.
 
 Vypravěč Honza. Uložte jako MP3 do `audio/` přesně pod uvedeným názvem; kurz si je najde sám.
 Dokud soubor chybí, replika se jen zobrazí jako text.
@@ -72,30 +75,30 @@ Poznáváte něco z toho u sebe nebo u někoho blízkého? Neváhejte. Kam zavol
 
 ## Video 3.2 · Kdo vám podá ruku
 
-### audio/3.2-L1.mp3  ✔ hotovo
+### audio/3.3-L1.mp3  ✔ hotovo
 
 Dobrá zpráva: pomoc je blízko. Vždy je to člověk.
 
-### audio/3.2-L2.mp3  ✔ hotovo
+### audio/3.3-L2.mp3  ✔ hotovo
 
 Nejdřív zkuste někoho, komu věříte. Stačí jedna věta: Poslední dobou je mi těžko a potřebuji si promluvit.
 
-### audio/3.2-L3.mp3  ✔ hotovo
+### audio/3.3-L3.mp3  ✔ hotovo
 
 Praktický lékař vás vyslyší a podle potřeby pošle k odborníkovi.
 
-### audio/3.2-L4.mp3  ✔ hotovo
+### audio/3.3-L4.mp3  ✔ hotovo
 
 Linka seniorů: 800 200 007. [PRACOVNÍ DOBA]
 
-### audio/3.2-L5.mp3  ✔ hotovo
+### audio/3.3-L5.mp3  ✔ hotovo
 
 Linka první psychické pomoci: 116 123.
 
-### audio/3.2-L6.mp3  ✔ hotovo
+### audio/3.3-L6.mp3  ✔ hotovo
 
 Pokud někomu hrozí nebezpečí, volejte 158 nebo 112.
 
-### audio/3.2-L7.mp3  ✔ hotovo
+### audio/3.3-L7.mp3  ✔ hotovo
 
 Chcete se o umělé inteligenci dozvědět víc? Další kurzy najdete na webu Elbot a v Centru Elpida v Praze.

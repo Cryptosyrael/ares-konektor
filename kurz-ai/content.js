@@ -24,7 +24,7 @@ const ZASADY = [
   { c: 1, nazev: "Ověřujte", text: "Důležité informace si ověřte jinde než u AI. I vymyšlená odpověď může znít naprosto věrohodně.", video: "2.2" },
   { c: 2, nazev: "Chraňte své údaje", text: "Nevkládejte osobní údaje, čísla účtů a karet, PIN kódy ani fotografie dokladů a dokumentů.", video: "2.3" },
   { c: 3, nazev: "Ptejte se jinak", text: "Zadání formulujte neutrálně. Požádejte o námitky („Co mi může unikat?“) a o více možností místo jedné odpovědi.", video: "2.1" },
-  { c: 4, nazev: "Jen jako doplněk", text: "AI empatii simuluje, vzájemný vztah ale nenabízí. Nemá nahradit blízké ani odbornou péči.", video: "3.1" },
+  { c: 4, nazev: "Jen jako doplněk", text: "AI empatii simuluje, vzájemný vztah ale nenabízí. Nemá nahradit blízké ani odbornou péči.", video: "3.2" },
 ];
 
 const PRINOSY = [
@@ -47,7 +47,7 @@ const USKALI = [
 const MODULY = [
   { c: 1, nazev: "Kdo mi odpovídá?", cas: "7 min", popis: "Seznámení s Honzou a Ozvěnou. Co je konverzační AI, kde se s ní setkáte a proč zní tak lidsky, ačkoli nic neprožívá.", videa: ["1.1"] },
   { c: 2, nazev: "Když AI zmate", cas: "16 min", popis: "AI v roli posluchače, která přitakává, sebejistě si vymýšlí nebo předstírá přátelství. Po každém videu otázka: Co jste si všimli?", videa: ["2.1", "2.2", "2.3"] },
-  { c: 3, nazev: "Komu zavolat", cas: "11 min", popis: "Varovné signály, při kterých AI nestačí. Lékař, krizové linky a blízcí: kdo co nabízí a jak udělat první krok.", videa: ["3.1", "3.2"] },
+  { c: 3, nazev: "Komu zavolat", cas: "13 min", popis: "Varovné signály, proč v krizi nestačí AI a kdo vám podá ruku. Blízcí, lékař a krizové linky: kdo co nabízí a jak udělat první krok.", videa: ["3.1", "3.2", "3.3"] },
   { c: 4, nazev: "Závěr a test", cas: "11 min", popis: "Shrnutí s Honzou a Ozvěnou, čtyři zásady používání AI a závěrečný test. Test lze kdykoli opakovat.", videa: [] },
 ];
 
@@ -168,17 +168,39 @@ const VIDEA = {
     },
   },
   "3.2": {
+    nazev: "Když je hlava zahlcená", modul: 3, delka: "asi 1:15", zasada: 4, tlumene: true,
+    upozorneni: "Hlas Honzy i Ozvěny je generovaný. Toto video vychází z praxe krizové intervence. Není to diagnóza ani rada.",
+    repliky: [
+      { kdo: "L", kod: "3.2-L1", pose: "serious", text: "Proč chatbot v krizi nestačí? Podívejme se, co se v takové chvíli děje s člověkem. Pracovníci krizových linek to znají velmi dobře." },
+      { kdo: "L", kod: "3.2-L2", pose: "talk", karta: "Je mi nejhůř|Hlava je zahlcená, myšlenky se pletou, rozhodovat se téměř nejde.", text: "Když je zle opravdu hodně, hlava se zahltí. Myšlenky se pletou a rozhodovat se je téměř nemožné." },
+      { kdo: "L", kod: "3.2-L3", pose: "talk", karta: "Nejhorší ustupuje|Už se dá mluvit, ale síly na rozhodování ještě chybí.", text: "Potom nejhorší vlna ustupuje. Už se dá mluvit, ale síly na rozhodování ještě chybí." },
+      { kdo: "L", kod: "3.2-L4", pose: "talk", karta: "Je klidněji|Dokážu se na to podívat s odstupem a promyslet to.", text: "Teprve když se situace uklidní, přichází odstup. Dokážete se na věc podívat zvenčí a promyslet ji." },
+      { kdo: "O", kod: "3.2-O1", pose: "sad", text: "Právě v první chvíli by se člověk nejvíc potřeboval svěřit. Jenže tehdy nepozná, jestli mu odpovídám dobře, nebo jen přitakávám. A já nepoznám, jak je to vážné." },
+      { kdo: "O", kod: "3.2-O2", pose: "ask", pauza: true, text: "Kdy může být chatbot užitečný?" },
+      { kdo: "L", kod: "3.2-L5", pose: "serious", text: "Proto platí jednoduché pravidlo. Když cítíte, že nemůžete přemýšlet, nepište chatbotu. Zavolejte člověku." },
+      { kdo: "L", kod: "3.2-L6", pose: "talk", text: "Člověk na lince vám neřekne deset rad najednou. Zeptá se, jak vám je, a půjde s vámi po jednom kroku." },
+    ],
+    otazka: {
+      text: "Kdy může být chatbot užitečný?",
+      moznosti: [
+        { p: "A", text: "Když je mi nejhůř a potřebuji rychle poradit.", spravne: false, zv: "Právě tehdy nemáte sílu posoudit, jestli odpověď sedí. V takové chvíli potřebujete člověka." },
+        { p: "B", text: "Když je klidněji a chci si utřídit myšlenky nebo připravit otázky pro lékaře.", spravne: true, zv: "Ano. V klidné chvíli může chatbot pomoci jako doplněk. Rozhodnutí ale zůstává na vás a na lidech kolem vás." },
+        { p: "C", text: "Když chci, aby za mě rozhodl, co dál.", spravne: false, zv: "Důležitá rozhodnutí chatbotu nepatří. Neznáte jeho zdroje a on nezná vás." },
+      ],
+    },
+  },
+  "3.3": {
     nazev: "Kdo vám podá ruku", modul: 3, delka: "asi 1:45", zasada: 4,
     upozorneni: "Hlas Honzy i Ozvěny je generovaný. Telefonní čísla si ověřte u každé služby.",
     repliky: [
-      { kdo: "L", kod: "3.2-L1", pose: "hello", text: "Dobrá zpráva: pomoc je blízko. Vždy je to člověk." },
-      { kdo: "L", kod: "3.2-L2", pose: "talk", karta: "Blízký člověk|„Poslední dobou je mi těžko a potřebuji si promluvit.“", text: "Nejdřív zkuste někoho, komu věříte. Stačí jedna věta: Poslední dobou je mi těžko a potřebuji si promluvit." },
-      { kdo: "L", kod: "3.2-L3", pose: "talk", karta: "Praktický lékař|Vyslechne vás a podle potřeby pošle k odborníkovi.", text: "Praktický lékař vás vyslyší a podle potřeby pošle k odborníkovi." },
-      { kdo: "L", kod: "3.2-L4", pose: "talk", karta: "Linka seniorů|800 200 007 · [PRACOVNÍ DOBA]", text: "Linka seniorů: 800 200 007. [PRACOVNÍ DOBA]" },
-      { kdo: "L", kod: "3.2-L5", pose: "talk", karta: "Linka první psychické pomoci|116 123", text: "Linka první psychické pomoci: 116 123." },
-      { kdo: "L", kod: "3.2-L6", pose: "serious", karta: "Ohrožení života|158 nebo 112", text: "Pokud někomu hrozí nebezpečí, volejte 158 nebo 112." },
-      { kdo: "O", kod: "3.2-O1", pose: "wait", text: "Já jsem program a u vás nebudu. Tito lidé ano. Volat můžete kdykoli, i jen s otázkou, jestli je v pořádku, že voláte." },
-      { kdo: "L", kod: "3.2-L7", pose: "hello", scena: "odkazy", text: "Chcete se o umělé inteligenci dozvědět víc? Další kurzy najdete na webu Elbot a v Centru Elpida v Praze." },
+      { kdo: "L", kod: "3.3-L1", pose: "hello", text: "Dobrá zpráva: pomoc je blízko. Vždy je to člověk." },
+      { kdo: "L", kod: "3.3-L2", pose: "talk", karta: "Blízký člověk|„Poslední dobou je mi těžko a potřebuji si promluvit.“", text: "Nejdřív zkuste někoho, komu věříte. Stačí jedna věta: Poslední dobou je mi těžko a potřebuji si promluvit." },
+      { kdo: "L", kod: "3.3-L3", pose: "talk", karta: "Praktický lékař|Vyslechne vás a podle potřeby pošle k odborníkovi.", text: "Praktický lékař vás vyslyší a podle potřeby pošle k odborníkovi." },
+      { kdo: "L", kod: "3.3-L4", pose: "talk", karta: "Linka seniorů|800 200 007 · [PRACOVNÍ DOBA]", text: "Linka seniorů: 800 200 007. [PRACOVNÍ DOBA]" },
+      { kdo: "L", kod: "3.3-L5", pose: "talk", karta: "Linka první psychické pomoci|116 123", text: "Linka první psychické pomoci: 116 123." },
+      { kdo: "L", kod: "3.3-L6", pose: "serious", karta: "Ohrožení života|158 nebo 112", text: "Pokud někomu hrozí nebezpečí, volejte 158 nebo 112." },
+      { kdo: "O", kod: "3.3-O1", pose: "wait", text: "Já jsem program a u vás nebudu. Tito lidé ano. Volat můžete kdykoli, i jen s otázkou, jestli je v pořádku, že voláte." },
+      { kdo: "L", kod: "3.3-L7", pose: "hello", scena: "odkazy", text: "Chcete se o umělé inteligenci dozvědět víc? Další kurzy najdete na webu Elbot a v Centru Elpida v Praze." },
     ],
   },
 };

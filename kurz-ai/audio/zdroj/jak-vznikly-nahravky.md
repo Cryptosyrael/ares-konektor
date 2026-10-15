@@ -14,15 +14,15 @@ v pořadí scénáře: nejdřív všech 21 replik Honzy, pak 4 repliky paní Jan
 | 9 | `3.1-L1` | 10 | `3.1-L2` |
 | 11 | `3.1-L3` | 12 | `3.1-L4` |
 | 13 | `3.1-L5` | 14 | `3.1-L6` |
-| 15 | `3.2-L1` | 16 | `3.2-L2` |
-| 17 | `3.2-L3` | 18 | `3.2-L4` |
-| 19 | `3.2-L5` | 20 | `3.2-L6` |
-| 21 | `3.2-L7` | 22 | `2.1-J1` |
+| 15 | `3.3-L1` | 16 | `3.3-L2` |
+| 17 | `3.3-L3` | 18 | `3.3-L4` |
+| 19 | `3.3-L5` | 20 | `3.3-L6` |
+| 21 | `3.3-L7` | 22 | `2.1-J1` |
 | 23 | `2.1-J2` | 24 | `2.1-J3` |
 | 25 | `2.2-J1` | 26 | `2.3-T1` |
 
-Mapování je ověřené: 24 z 26 souborů má tempo řeči 10–14 znaků za sekundu, tři odlehlé (`3.2-L4`, `3.2-L5`,
-`3.2-L6`) jsou právě repliky s telefonními čísly, která Honza čte po číslicích. Výška hlasu sedí
+Mapování je ověřené: 24 z 26 souborů má tempo řeči 10–14 znaků za sekundu, tři odlehlé (`3.3-L4`, `3.3-L5`,
+`3.3-L6`) jsou právě repliky s telefonními čísly, která Honza čte po číslicích. Výška hlasu sedí
 (Honza ~165 Hz, paní Jana 211–232 Hz, pan Tomáš ~120 Hz).
 
 ## Úprava

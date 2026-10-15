@@ -1,7 +1,7 @@
 # Stroj, který naslouchá – online kurz
 
 Informační online kurz o umělé inteligenci jako posluchači, rádci a společníkovi.
-Čtyři moduly, šest animovaných videí (vypravěč Honza a Ozvěna), závěrečný test.
+Čtyři moduly, sedm animovaných videí (vypravěč Honza a Ozvěna), závěrečný test.
 
 Kurz je obyčejná webová stránka. Nepotřebuje žádný server ani databázi,
 stačí ji nahrát kamkoli na web (například zdarma na GitHub Pages).
@@ -157,7 +157,9 @@ Při prvním `push` se GitHub zeptá na přihlášení v okně prohlížeče.
 
 - doplnit texty v hranatých závorkách (žadatel, garant, pracovní doba, logo),
 - ověřit telefonní čísla a pracovní dobu Linky seniorů,
-- nechat odborného garanta schválit scénáře, zvláště video 3.1 a znění testu,
+- nechat odborného garanta schválit scénáře, zvláště videa 3.1 a 3.2 a znění testu. Video 3.2 ("Když je hlava zahlcená") vychází
+  z pohledu krizové intervence (tři stavy člověka v krizi) a tvrzení „člověk na lince vám neřekne deset rad najednou“
+  je třeba potvrdit z praxe,
 - ověřit, že číslo 800 123 456 ve videu 2.2 nepatří skutečné službě,
 - nahrát hlas paní Jany (4 repliky) a pana Tomáše (1 replika).
 
