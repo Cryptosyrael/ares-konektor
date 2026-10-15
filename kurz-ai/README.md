@@ -16,8 +16,8 @@ stačí ji nahrát kamkoli na web (například zdarma na GitHub Pages).
 | `content.js` | **veškerý text kurzu**: moduly, repliky videí, otázky, zásady, kontakty |
 | `characters.js` | kreslené postavy Honza a Ozvěna (SVG) |
 | `audio/` | nahrávky replik: `1.1-O1.mp3` = video 1.1, Ozvěna, 1. replika; `2.1-L1.mp3` = Honza; `2.1-CH1.mp3` = chatbot |
-| `audio/smycka-10s.mp3` | podkladové ťukání do klávesnice, zazní, když replika nemá nahrávku |
-| `audio/smycka-pomalu-10s.mp3` | totéž pomaleji, pro psaní člověka |
+| `audio/smycka-10s.mp3` | ťukání do klávesnice pod psaním chatbota |
+| `audio/smycka-pomalu-10s.mp3` | totéž pomaleji, pod psaním člověka |
 | `audio/zdroj/` | původní nahrávka klávesnice, ze které jsou smyčky vyrobené |
 | `obrazky/` | logo Elpidy ve vektoru, zdrojová PDF ve `zdroj/` |
 | `scorm.js` | propojení s LMS; mimo LMS se nic neděje |
@@ -79,8 +79,10 @@ Do balíčku se nepřidává.
 - **Hranice úspěšnosti testu** – v `content.js` řádek `hraniceTestu: 7`.
 - **Nové nahrávky** (paní Jana, pan Tomáš) – uložte je jako MP3 do složky `audio/`
   pod kódem repliky: `2.1-J1.mp3`, `2.1-J2.mp3`, `2.1-J3.mp3`, `2.2-J1.mp3`, `2.3-T1.mp3`
-  a `3.1-J1.mp3`. Aplikace je najde sama. Dokud soubor chybí, zpráva se píše na obrazovku
-  a pod ní zní ťukání do klávesnice.
+  a `3.1-J1.mp3`. Aplikace je najde sama. Dokud soubor chybí, zpráva se jen píše na obrazovku.
+- **Ťukání do klávesnice** zní pod každým psaním v chatu — u chatbota i u člověka.
+  S nahraným hlasem hraje tišeji (0,3 a 0,18), bez hlasu hlasitěji (0,6 a 0,35),
+  aby hlasu nekonkurovalo. Hlasitosti jsou v `app.js` u volání `startLoop`.
 - **Ťukání do klávesnice** – `smycka-10s.mp3` a `smycka-pomalu-10s.mp3` jsou bezešvé
   smyčky vyrobené ze záznamu v `audio/zdroj/klavesnice.mp3`: konec se přelévá přes
   začátek, aby na spoji neluplo. Obě trvají 10 s, stejně jako dřív, takže se nic

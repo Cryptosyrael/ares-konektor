@@ -298,7 +298,8 @@
       if (token !== this.cancelToken) return;
       let ms = odhadSekund(r.text) * 1000;
       if (voice) { ms = (voice.duration || ms / 1000) * 1000; this.audio = voice; voice.currentTime = 0; voice.play().catch(() => {}); }
-      else this.startLoop("smycka-pomalu-10s", 0.35);
+      // ťukání zní pod každým psaním; s hlasem tišeji, ať mu nekonkuruje
+      this.startLoop("smycka-pomalu-10s", voice ? 0.18 : 0.35);
       await this.typeInto(m, r.text, ms * 0.9, token);
       this.stopLoop();
       if (voice && !voice.ended) await new Promise((res) => { voice.onended = res; this.timers.push(setTimeout(res, 4000)); });
@@ -317,7 +318,8 @@
       if (token !== this.cancelToken) return;
       let ms = odhadSekund(r.text) * 900;
       if (tuk) { ms = (tuk.duration || ms / 1000) * 1000; this.audio = tuk; tuk.currentTime = 0; tuk.play().catch(() => {}); }
-      else this.startLoop("smycka-10s", 0.6);
+      // ťukání zní pod každým psaním chatbota; s hlasem tišeji, ať mu nekonkuruje
+      this.startLoop("smycka-10s", tuk ? 0.3 : 0.6);
       await this.typeInto(m, r.text, ms, token, r.zvyrazni);
       this.stopLoop(); if (this.audio === tuk && tuk) { tuk.pause(); } this.audio = null;
       if (r.razitko) { m.append(el("span", { class: "razitko" }, r.razitko)); }
