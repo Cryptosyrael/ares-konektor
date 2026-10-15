@@ -157,9 +157,10 @@ Při prvním `push` se GitHub zeptá na přihlášení v okně prohlížeče.
 
 - doplnit texty v hranatých závorkách (žadatel, garant, pracovní doba, logo),
 - ověřit telefonní čísla a pracovní dobu Linky seniorů,
-- nechat odborného garanta schválit scénáře, zvláště videa 3.1 a 3.2 a znění testu. Video 3.2 ("Když je hlava zahlcená") vychází
-  z pohledu krizové intervence (tři stavy člověka v krizi) a tvrzení „člověk na lince vám neřekne deset rad najednou“
-  je třeba potvrdit z praxe,
+- nechat odborného garanta schválit scénář videa 3.1 a znění testu,
+- video 3.2 („Když je hlava zahlcená“, pohled krizové intervence) **je odsouhlasené ředitelkou Elpidy**,
+  včetně věty o práci člověka na lince (podle sdělení zadavatelky). Při příštím nahrávání lze upřesnit
+  poslední větu videa 3.1, která slibuje „kam zavolat, řekneme v dalším videu“,
 - ověřit, že číslo 800 123 456 ve videu 2.2 nepatří skutečné službě,
 - nahrát hlas paní Jany (4 repliky) a pana Tomáše (1 replika).
 
