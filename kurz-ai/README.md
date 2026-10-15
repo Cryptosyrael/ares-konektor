@@ -19,8 +19,9 @@ stačí ji nahrát kamkoli na web (například zdarma na GitHub Pages).
 | `audio/smycka-10s.mp3` | ťukání do klávesnice pod psaním chatbota |
 | `audio/smycka-pomalu-10s.mp3` | totéž pomaleji, pod psaním člověka |
 | `audio/zdroj/` | původní nahrávka klávesnice, ze které jsou smyčky vyrobené |
-| `audio/vadne-honza/` | dodané „Honzovy“ soubory, které Honzu neobsahují — viz tamní `CTI-ME.md` |
-| `audio/honza-k-namluveni.md` | 21 Honzových replik k namluvení, s názvy souborů |
+| `audio/vadne-honza/` | vadné dodané soubory „Honzy“ — viz tamní `CTI-ME.md` |
+| `audio/honza-k-namluveni.md` | 21 Honzových replik s názvy souborů, hotové označené ✔ |
+| `audio/zdroj/` | původní nahrávky (klávesnice, celý Honza) a postup stříhání v `honza-rezy.md` |
 | `obrazky/` | logo Elpidy ve vektoru, zdrojová PDF ve `zdroj/` |
 | `scorm.js` | propojení s LMS; mimo LMS se nic neděje |
 | `zabalit-scorm.py` | vytvoří SCORM balíček do `dist/` |
@@ -79,10 +80,11 @@ Do balíčku se nepřidává.
   `[JMÉNO GARANTA]`, `[PRACOVNÍ DOBA]`, `[TELEFON]`, `[LOGO]`.
   Vyhledejte je (Ctrl+F) v `content.js`, `app.js` a `index.html`.
 - **Hranice úspěšnosti testu** – v `content.js` řádek `hraniceTestu: 7`.
-- **Hlas Honzy zatím chybí.** Dodané soubory `*-L*.mp3` obsahovaly Ozvěnu, ne Honzu
-  (podrobnosti v `audio/vadne-honza/CTI-ME.md`), proto jsou odstavené a Honza běží
-  jako text se správným časováním. Co namluvit a jak soubory pojmenovat je
-  v `audio/honza-k-namluveni.md`. Jakmile soubory přibudou do `audio/`, kurz je najde sám.
+- **Hlas Honzy je hotový z jedné třetiny.** Dodané soubory `*-L*.mp3` byly vadné (viz
+  `audio/vadne-honza/CTI-ME.md`), proto jsem Honzovy repliky stříhal znovu z celé nahrávky.
+  **Hotových je 7 z 21** (videa 1.1, 2.1, 2.2 a začátek 2.3); zbylých 14 z délky textu
+  spolehlivě určit nejde a běží jako text se správným časováním. Co a proč zbývá je
+  v `audio/zdroj/honza-rezy.md`, seznam replik v `audio/honza-k-namluveni.md`.
 - **Nové nahrávky** (paní Jana, pan Tomáš) – uložte je jako MP3 do složky `audio/`
   pod kódem repliky: `2.1-J1.mp3`, `2.1-J2.mp3`, `2.1-J3.mp3`, `2.2-J1.mp3`, `2.3-T1.mp3`
   a `3.1-J1.mp3`. Aplikace je najde sama. Dokud soubor chybí, zpráva se jen píše na obrazovku.

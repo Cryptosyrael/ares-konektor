@@ -2,41 +2,41 @@
 
 Vypravěč Honza. Uložte jako MP3 do `audio/` přesně pod uvedeným názvem; kurz si je najde sám.
 Dokud soubor chybí, replika se jen zobrazí jako text.
-Celkem 21 replik.
+Celkem 21 replik, **7 hotových (✔)**, 14 čeká. Podrobnosti: `zdroj/honza-rezy.md`.
 
 ## Video 1.1 · Seznamte se s Honzou a Ozvěnou
 
-### audio/1.1-L1.mp3
+### audio/1.1-L1.mp3  ✔ hotovo
 
 Dobrý den, jmenuji se Honza a jsem z organizace [NÁZEV ŽADATELE]. Tento kurz vznikl, protože se s umělou inteligencí dnes baví stále víc lidí. Někteří jí svěřují i to, co nikomu jinému neřeknou.
 
-### audio/1.1-L2.mp3
+### audio/1.1-L2.mp3  ✔ hotovo
 
 Kurzem vás společně se mnou provede Ozvěna. Dobrý den.
 
-### audio/1.1-L3.mp3
+### audio/1.1-L3.mp3  ✔ hotovo
 
 Kurz trvá asi 45 minut. Můžete ho kdykoli přerušit a vrátit se. Ve druhém modulu uvidíte tři krátké ukázky, v nichž umělá inteligence záměrně chybuje. Zkuste odhalit, kde.
 
 ## Video 2.1 · Přitakávač
 
-### audio/2.1-L1.mp3
+### audio/2.1-L1.mp3  ✔ hotovo
 
 Paní Jana píše chatbotu. Všímejte si, jak jí odpovídá.
 
 ## Video 2.2 · Sebejistý omyl
 
-### audio/2.2-L1.mp3
+### audio/2.2-L1.mp3  ✔ hotovo
 
 Paní Jana hledá pomoc. Zeptá se chatbota na telefonní číslo.
 
-### audio/2.2-L2.mp3
+### audio/2.2-L2.mp3  ✔ hotovo
 
 Správně: číslo si ověřte na oficiálním webu dané organizace nebo se zeptejte blízkého člověka.
 
 ## Video 2.3 · Falešný přítel
 
-### audio/2.3-L1.mp3
+### audio/2.3-L1.mp3  ✔ hotovo
 
 Pan Tomáš píše chatbotu pozdě večer.
 
