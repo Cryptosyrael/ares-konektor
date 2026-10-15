@@ -79,7 +79,7 @@ Do balíčku se nepřidává.
 - **Text kurzu nebo repliku ve videu** – otevřete `content.js` v Poznámkovém bloku
   (nebo lépe ve VS Code) a přepište text v uvozovkách. Nic jiného neměňte.
 - **Zástupné texty v hranatých závorkách** už v kurzu nezbyly. Žadatel (Elpida), telefon a pracovní doba
-  Linky seniorů (800 200 007, každý den od osmi do dvaceti) a logo jsou doplněné.
+  Linky seniorů (800 200 007, každý den 8:00–20:00) a logo jsou doplněné.
   Vyhledejte je (Ctrl+F) v `content.js`, `app.js` a `index.html`.
 - **Hranice úspěšnosti testu** – v `content.js` řádek `hraniceTestu: 7`.
 - **Hlasy: namluveno je všechno** – Honza (27 replik), paní Jana (4), pan Tomáš (3), Ozvěna a chatbot (8 odpovědí).
@@ -157,7 +157,7 @@ Kurz je interní kurz Elpidy a schvaluje se až po odevzdání. Zbývá hlavně 
 
 - poslechem ověřit nahrávky, zvlášť větu `1.1-L1` (název Elpida) a `3.3-L4` (pracovní doba): bez přepisu řeči nelze
   odsud ověřit, že už říkají skutečná slova a ne zástupný text,
-- kontaktní údaje Linky seniorů (800 200 007, každý den od osmi do dvaceti) potvrdit u Elpidy,
+- kontaktní údaje Linky seniorů (800 200 007, každý den 8:00–20:00) potvrdit u Elpidy,
 - volitelně upřesnit poslední větu videa 3.1, která slibuje „kam zavolat, řekneme v dalším videu“.
 
 Video 3.2 („Když je hlava zahlcená“, pohled krizové intervence) je odsouhlasené ředitelkou Elpidy (podle sdělení zadavatelky).

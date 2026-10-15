@@ -18,7 +18,7 @@
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   const fmt = (s) => { s = Math.max(0, Math.round(s)); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); };
-  const JMENA = { L: "Honza", O: "Ozvěna", J: "Paní Jana", T: "Pan Tomáš", CH: "Chatbot", TIT: "Uživatelka" };
+  const JMENA = { L: "Honza", O: "Ozvěna", J: "Paní Jana", T: "Pan Tomáš", CH: "Chatbot", TIT: "Marie" };
 
   // ---------- uložený postup a nastavení ----------
   // V LMS (SCORM) se postup drží i tam, mimo LMS jen v prohlížeči.
@@ -294,7 +294,7 @@
       const body = this.chatWindow(r.chatOsoba || (this.v.chat && this.v.chat.osoba));
       const m = el("div", { class: "msg user" }, el("span", { class: "who" }, r.chatOsoba || JMENA[r.kdo]));
       body.append(m); this.trimChat();
-      const voice = r.kdo === "TIT" ? null : await loadAudio(r.kod);
+      const voice = await loadAudio(r.kod);
       if (token !== this.cancelToken) return;
       let ms = odhadSekund(r.text) * 1000;
       if (voice) { ms = (voice.duration || ms / 1000) * 1000; this.audio = voice; voice.currentTime = 0; voice.play().catch(() => {}); }
