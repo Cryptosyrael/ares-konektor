@@ -21,7 +21,7 @@ stačí ji nahrát kamkoli na web (například zdarma na GitHub Pages).
 | `audio/zdroj/` | původní nahrávka klávesnice, ze které jsou smyčky vyrobené |
 | `audio/vadne-honza/` | vadné dodané soubory „Honzy“ — viz tamní `CTI-ME.md` |
 | `audio/honza-k-namluveni.md` | seznam Honzových replik a názvů souborů |
-| `audio/hlasy-k-doplneni.md` | co ještě chybí namluvit (hlas chatbota, 2 repliky Tomáše), vzniká skriptem |
+| `audio/hlasy-k-doplneni.md` | co ještě chybí namluvit (teď nic), vzniká skriptem |
 | `audio/zdroj/` | původní nahrávka klávesnice a `jak-vznikly-nahravky.md` |
 | `obrazky/` | logo Elpidy ve vektoru, zdrojová PDF ve `zdroj/` |
 | `scorm.js` | propojení s LMS; mimo LMS se nic neděje |
@@ -82,10 +82,8 @@ Do balíčku se nepřidává.
   Linky seniorů (800 200 007, každý den od osmi do dvaceti) a logo jsou doplněné.
   Vyhledejte je (Ctrl+F) v `content.js`, `app.js` a `index.html`.
 - **Hranice úspěšnosti testu** – v `content.js` řádek `hraniceTestu: 7`.
-- **Hlasy: namluveno je Honza (21 replik), paní Jana (4), pan Tomáš (1), Ozvěna a chatbot (8 odpovědí).**
-  Chybí dvě nové repliky pana Tomáše (`2.3-T2`, `2.3-T3`) a osm replik nového videa 3.2
-  (šest Honzových a dvě Ozvěniny). Co přesně a pod jakým názvem uložit, je v `audio/hlasy-k-doplneni.md`;
-  seznam se obnoví příkazem `node vypsat-chybejici-hlasy.js`. Nahrávky vznikly z exportů po odstavcích,
+- **Hlasy: namluveno je všechno** – Honza (27 replik), paní Jana (4), pan Tomáš (3), Ozvěna a chatbot (8 odpovědí).
+  Kdyby někdy něco přibylo, seznam chybějících nahrávek (`audio/hlasy-k-doplneni.md`) se obnoví příkazem `node vypsat-chybejici-hlasy.js`. Nahrávky vznikly z exportů po odstavcích,
   viz `audio/zdroj/jak-vznikly-nahravky.md`. Dodané soubory `*-L*.mp3` byly vadné a jsou odstavené v `audio/vadne-honza/`.
 - **Nové nahrávky** – uložte je jako MP3 do složky `audio/` pod kódem repliky (například
   `2.1-J1.mp3`). Aplikace je najde sama; co chybí, se jen zobrazí jako text.
@@ -155,10 +153,8 @@ Při prvním `push` se GitHub zeptá na přihlášení v okně prohlížeče.
 
 ## Co je před odevzdáním ještě potřeba
 
-Kurz je interní kurz Elpidy a schvaluje se až po odevzdání. Zbývá hlavně dokončit nahrávky:
+Kurz je interní kurz Elpidy a schvaluje se až po odevzdání. Zbývá hlavně poslechová kontrola:
 
-- namluvit chybějící repliky, seznam je v `audio/hlasy-k-doplneni.md` (dvě repliky pana Tomáše,
-  a osm replik nového videa 3.2),
 - poslechem ověřit nahrávky, zvlášť větu `1.1-L1` (název Elpida) a `3.3-L4` (pracovní doba): bez přepisu řeči nelze
   odsud ověřit, že už říkají skutečná slova a ne zástupný text,
 - kontaktní údaje Linky seniorů (800 200 007, každý den od osmi do dvaceti) potvrdit u Elpidy,
