@@ -82,11 +82,11 @@ Do balíčku se nepřidává.
   `[JMÉNO GARANTA]`, `[PRACOVNÍ DOBA]`, `[TELEFON]`, `[LOGO]`.
   Vyhledejte je (Ctrl+F) v `content.js`, `app.js` a `index.html`.
 - **Hranice úspěšnosti testu** – v `content.js` řádek `hraniceTestu: 7`.
-- **Hlasy: namluveno je Honza (21 replik), paní Jana (4), pan Tomáš (1) a Ozvěna.** Chybí hlas chatbota
-  (8 odpovědí) a dvě nové repliky pana Tomáše (`2.3-T2`, `2.3-T3`). Co přesně a pod jakým názvem
-  uložit, je v `audio/hlasy-k-doplneni.md`; seznam se obnoví příkazem `node vypsat-chybejici-hlasy.js`.
-  Nahrávky Honzy, Jany a Tomáše vznikly z exportu po odstavcích, viz `audio/zdroj/jak-vznikly-nahravky.md`.
-  Dodané soubory `*-L*.mp3` byly vadné a jsou odstavené v `audio/vadne-honza/`.
+- **Hlasy: namluveno je Honza (21 replik), paní Jana (4), pan Tomáš (1), Ozvěna a chatbot (8 odpovědí).**
+  Chybí dvě nové repliky pana Tomáše (`2.3-T2`, `2.3-T3`) a osm replik nového videa 3.2
+  (šest Honzových a dvě Ozvěniny). Co přesně a pod jakým názvem uložit, je v `audio/hlasy-k-doplneni.md`;
+  seznam se obnoví příkazem `node vypsat-chybejici-hlasy.js`. Nahrávky vznikly z exportů po odstavcích,
+  viz `audio/zdroj/jak-vznikly-nahravky.md`. Dodané soubory `*-L*.mp3` byly vadné a jsou odstavené v `audio/vadne-honza/`.
 - **Nové nahrávky** – uložte je jako MP3 do složky `audio/` pod kódem repliky (například
   `2.1-J1.mp3`). Aplikace je najde sama; co chybí, se jen zobrazí jako text.
 - **Ťukání chatbota** jsou soubory `KÓD-CH*.mp3` (například `2.1-CH1.mp3`). Původní dodané soubory
