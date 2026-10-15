@@ -78,9 +78,8 @@ Do balíčku se nepřidává.
 
 - **Text kurzu nebo repliku ve videu** – otevřete `content.js` v Poznámkovém bloku
   (nebo lépe ve VS Code) a přepište text v uvozovkách. Nic jiného neměňte.
-- **Místa k doplnění** jsou v hranatých závorkách. Žadatel (Elpida), telefon a pracovní doba Linky seniorů
-  (800 200 007, každý den od osmi do dvaceti) a logo jsou doplněné; zbývá `[JMÉNO GARANTA]` a
-  `[PODOBA POTVRZENÍ SE URČÍ S GARANTEM]`.
+- **Zástupné texty v hranatých závorkách** už v kurzu nezbyly. Žadatel (Elpida), telefon a pracovní doba
+  Linky seniorů (800 200 007, každý den od osmi do dvaceti) a logo jsou doplněné.
   Vyhledejte je (Ctrl+F) v `content.js`, `app.js` a `index.html`.
 - **Hranice úspěšnosti testu** – v `content.js` řádek `hraniceTestu: 7`.
 - **Hlasy: namluveno je Honza (21 replik), paní Jana (4), pan Tomáš (1), Ozvěna a chatbot (8 odpovědí).**
@@ -154,16 +153,20 @@ git push -u origin main
 
 Při prvním `push` se GitHub zeptá na přihlášení v okně prohlížeče.
 
-## Co je před zveřejněním ještě potřeba
+## Co je před odevzdáním ještě potřeba
 
-- doplnit texty v hranatých závorkách (žadatel, garant, pracovní doba, logo),
-- ověřit telefonní čísla a pracovní dobu Linky seniorů,
-- nechat odborného garanta schválit scénář videa 3.1 a znění testu,
-- video 3.2 („Když je hlava zahlcená“, pohled krizové intervence) **je odsouhlasené ředitelkou Elpidy**,
-  včetně věty o práci člověka na lince (podle sdělení zadavatelky). Při příštím nahrávání lze upřesnit
-  poslední větu videa 3.1, která slibuje „kam zavolat, řekneme v dalším videu“,
-- ověřit, že číslo 800 123 456 ve videu 2.2 nepatří skutečné službě,
-- nahrát hlas paní Jany (4 repliky) a pana Tomáše (1 replika).
+Kurz je interní kurz Elpidy a schvaluje se až po odevzdání. Zbývá hlavně dokončit nahrávky:
+
+- namluvit chybějící repliky, seznam je v `audio/hlasy-k-doplneni.md` (dvě repliky pana Tomáše,
+  osm replik nového videa 3.2 a odpověď chatbota `2.2-CH1`, jejíž číslo se změnilo),
+- poslechem ověřit nahrávky, zvlášť větu `1.1-L1` (název Elpida) a `3.3-L4` (pracovní doba): bez přepisu řeči nelze
+  odsud ověřit, že už říkají skutečná slova a ne zástupný text,
+- kontaktní údaje Linky seniorů (800 200 007, každý den od osmi do dvaceti) potvrdit u Elpidy,
+- volitelně upřesnit poslední větu videa 3.1, která slibuje „kam zavolat, řekneme v dalším videu“.
+
+Video 3.2 („Když je hlava zahlcená“, pohled krizové intervence) je odsouhlasené ředitelkou Elpidy (podle sdělení zadavatelky).
+Číslo ve videu 2.2 je „023 034“. Začíná nulou a české telefonní číslo nulou nezačíná, takže by nemělo patřit žádné
+službě (starší „800 123 456“ patřilo, proto bylo nahrazeno).
 
 ## Přístupnost
 

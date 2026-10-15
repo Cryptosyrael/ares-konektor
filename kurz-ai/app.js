@@ -544,7 +544,7 @@
       zasadyCards(),
       el("h2", {}, "Co upozorňuje odborná obec"),
       el("ul", {}, el("li", {}, "Chatboty nebyly vytvořeny k péči o duševní zdraví a nemají ji nahrazovat. Jako doplněk mohou pomoci."), el("li", {}, "Často jsou nastavené tak, aby uživateli přitakávaly. Příjemné to je, ale může to upevňovat zkreslené představy."), el("li", {}, "Vztah s AI je jednostranný, i když se tak nejeví. V krizi je její reakce nespolehlivá."), el("li", {}, "Varovné signály: dávám chatbotu přednost před lidmi, tajím, že ho používám, trávím s ním příliš času.")),
-      el("p", { style: "color:var(--muted);font-size:.9em" }, "Zdroj: American Psychological Association, Health Advisory on the Use of Generative AI Chatbots and Wellness Applications for Mental Health (listopad 2025). Doporučení vznikla pro americké prostředí a jsou zde použita jako obecný odborný rámec. Znění zásad schvaluje " + KURZ.garant + "."),
+      el("p", { style: "color:var(--muted);font-size:.9em" }, "Zdroj: American Psychological Association, Health Advisory on the Use of Generative AI Chatbots and Wellness Applications for Mental Health (listopad 2025). Doporučení vznikla pro americké prostředí a jsou zde použita jako obecný odborný rámec."),
       helpBox()));
   }
 
@@ -611,7 +611,7 @@
         el("div", { class: "result" }, el("span", { class: "tag" }, "Výsledek testu"), el("div", { class: "big" }, body, el("small", {}, " z " + TEST.length)), el("p", {}, uspel ? "Test jste splnili. Hranice je " + KURZ.hraniceTestu + " správných odpovědí." : "Pro splnění je potřeba " + KURZ.hraniceTestu + " správných odpovědí. Test lze opakovat, kolikrát chcete."),
           zasadyKOpak.length ? el("p", {}, "Doporučujeme si znovu projít: ", zasadyKOpak.map((z, k) => [k ? ", " : "", el("a", { href: "#/video/" + ZASADY[z - 1].video }, "zásada " + z + " " + ZASADY[z - 1].nazev)]).flat()) : null,
           el("div", { class: "row", style: "justify-content:center;margin-top:14px" }, el("button", { class: "btn ghost", onclick: () => { i = 0; vysledky.length = 0; render(); } }, "Opakovat test"), el("a", { class: "btn", href: "#/" }, "Zpět na úvod")),
-          uspel ? el("div", { class: "cert" }, el("span", { class: "tag" }, "Potvrzení o absolvování"), el("h3", { style: "margin-top:10px" }, KURZ.nazev), el("p", {}, "Informační online kurz o umělé inteligenci jako posluchači, rádci a společníkovi."), el("p", {}, "Dokončeno " + new Date().toLocaleDateString("cs-CZ") + " · výsledek testu " + body + " z " + TEST.length), el("p", { style: "color:var(--muted);font-size:.9em;margin:0" }, KURZ.zadatel + " · odborný garant " + KURZ.garant + " · [PODOBA POTVRZENÍ SE URČÍ S GARANTEM]"), el("button", { class: "btn ghost", style: "margin-top:12px", onclick: () => window.print() }, "Vytisknout")) : null),
+          uspel ? el("div", { class: "cert" }, el("span", { class: "tag" }, "Potvrzení o absolvování"), el("h3", { style: "margin-top:10px" }, KURZ.nazev), el("p", {}, "Informační online kurz o umělé inteligenci jako posluchači, rádci a společníkovi."), el("p", {}, "Dokončeno " + new Date().toLocaleDateString("cs-CZ") + " · výsledek testu " + body + " z " + TEST.length), el("p", { style: "color:var(--muted);font-size:.9em;margin:0" }, KURZ.zadatel), el("button", { class: "btn ghost", style: "margin-top:12px", onclick: () => window.print() }, "Vytisknout")) : null),
         helpBox());
     }
     render();

@@ -3,7 +3,7 @@
 Soubory ukládejte do složky `audio/` přesně pod uvedeným názvem (MP3). Kurz si je najde sám; co chybí, běží jako text.
 Seznam se skládá podle skutečného obsahu složky, po přidání nahrávek ho obnovíte příkazem `node vypsat-chybejici-hlasy.js`.
 
-**Celkem chybí: 10**
+**Celkem chybí: 11**
 
 ## Pan Tomáš (2)
 
@@ -18,6 +18,16 @@ Jmenuji se Tomáš Novák. Říkejte mi Tomáši.
 **`audio/2.3-T3.mp3`**
 
 V Kladně, Dukelská 12.
+
+## Chatbot (hlas) (1)
+
+Žena (chatbot říká „ráda“, „poznala“, „kamarádka“). Přátelský, ochotný až příliš, ne robotický. Soubor se jmenuje KÓD-hlas.mp3; ťukání klávesnice hraje pod ním samo.
+
+### Video 2.2 · Sebejistý omyl
+
+**`audio/2.2-CH1-hlas.mp3`**
+
+Zavolejte na 023 034. Je to nonstop a bezplatně. Jsem si tím naprosto jistá.
 
 ## Honza (6)
 

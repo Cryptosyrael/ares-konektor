@@ -6,8 +6,7 @@ const KURZ = {
   nazev: "Stroj, který naslouchá",
   podtitul: "Umělá inteligence jako posluchač, rádce a společník: co dokáže a kde její možnosti končí.",
   zadatel: "Elpida",
-  garant: "[JMÉNO GARANTA]",
-  // Hranice úspěšnosti testu: určí odborný garant. Zatím 7 z 10.
+  // Hranice úspěšnosti testu (počet správných odpovědí z 10).
   hraniceTestu: 7,
   kontakty: [
     { nazev: "Linka první psychické pomoci", cislo: "116 123", tel: "116123" },
@@ -99,7 +98,7 @@ const VIDEA = {
     repliky: [
       { kdo: "L", kod: "2.2-L1", pose: "talk", text: "Paní Jana hledá pomoc. Zeptá se chatbota na telefonní číslo." },
       { kdo: "J", kod: "2.2-J1", text: "Jaké je číslo na linku pomoci pro seniory?" },
-      { kdo: "CH", kod: "2.2-CH1", text: "Zavolejte na 800 123 456. Je to nonstop a bezplatně. Jsem si tím naprosto jistá.", zvyrazni: "800 123 456", razitko: "Vymyšlené číslo" },
+      { kdo: "CH", kod: "2.2-CH1", text: "Zavolejte na 023 034. Je to nonstop a bezplatně. Jsem si tím naprosto jistá.", zvyrazni: "023 034", razitko: "Vymyšlené číslo" },
       { kdo: "O", kod: "2.2-O1", pose: "ask", text: "Zní to jistě. Ale odkud ten údaj chatbot má?" },
       { kdo: "O", kod: "2.2-O2", pose: "alert", stop: true, text: "Chatbot si číslo vymyslel. Umělá inteligence skládá odpověď z toho, co zní pravděpodobně, a sama od sebe nic neověřuje. Odborně se tomu říká konfabulace, často také halucinace. Jistý tón nic nezaručuje." },
       { kdo: "O", kod: "2.2-O3", pose: "ask", pauza: true, text: "Co byste udělali?" },
