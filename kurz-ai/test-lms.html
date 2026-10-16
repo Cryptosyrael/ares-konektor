@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<title>Zkušební LMS — kontrola SCORM</title>
+<style>
+  body { font: 14px system-ui, sans-serif; margin: 0; display: grid; grid-template-columns: 1fr 420px; height: 100vh; }
+  iframe { width: 100%; height: 100%; border: 0; border-right: 2px solid #15161a; }
+  aside { padding: 12px 16px; overflow: auto; background: #f4f3ee; }
+  h1 { font-size: 15px; margin: 0 0 8px }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+  td { padding: 3px 6px; border-bottom: 1px solid #ddd; vertical-align: top; font-size: 12px; }
+  td:first-child { color: #666; white-space: nowrap; width: 45% }
+  pre { background: #15161a; color: #d6ffe9; padding: 8px; font-size: 11px; max-height: 45vh; overflow: auto; white-space: pre-wrap; }
+  .p { margin: 0 0 10px; font-size: 12px; color: #555 }
+</style>
+</head>
+<body>
+<iframe id="kurz" title="Kurz"></iframe>
+<aside>
+  <h1>Zkušební LMS</h1>
+  <p class="p">Napodobuje LMS, aby šlo bez Moodlu ověřit, co kurz hlásí.
+     Verzi přepnete adresou <code>?v=2004</code>, jinak běží SCORM 1.2.</p>
+  <table id="model"></table>
+  <h1>Volání</h1>
+  <pre id="log"></pre>
+</aside>
+<script>
+const v2004 = new URLSearchParams(location.search).get('v') === '2004';
+const data = v2004
+  ? { 'cmi.completion_status': 'unknown', 'cmi.success_status': 'unknown', 'cmi.location': '',
+      'cmi.suspend_data': '', 'cmi.score.raw': '', 'cmi.score.min': '', 'cmi.score.max': '',
+      'cmi.score.scaled': '', 'cmi.session_time': '', 'cmi.exit': '', 'cmi.learner_name': 'Nováková Jana' }
+  : { 'cmi.core.lesson_status': 'not attempted', 'cmi.core.lesson_location': '',
+      'cmi.suspend_data': '', 'cmi.core.score.raw': '', 'cmi.core.score.min': '', 'cmi.core.score.max': '',
+      'cmi.core.session_time': '', 'cmi.core.exit': '', 'cmi.core.student_name': 'Nováková Jana' };
+
+const radky = [];
+function zapis(text) {
+  radky.push(text);
+  document.getElementById('log').textContent = radky.slice(-200).join('\n');
+  const t = document.getElementById('model');
+  t.innerHTML = Object.entries(data)
+    .map(([k, h]) => `<tr><td>${k}</td><td>${h === '' ? '—' : String(h).slice(0, 120)}</td></tr>`).join('');
+}
+
+function obsluha(nazev, klic, hodnota) {
+  if (klic === undefined) { zapis(nazev + '()'); return 'true'; }
+  if (hodnota === undefined) { zapis(`${nazev}("${klic}") → "${data[klic] ?? ''}"`); return data[klic] ?? ''; }
+  data[klic] = hodnota;
+  zapis(`${nazev}("${klic}", "${String(hodnota).slice(0, 90)}")`);
+  return 'true';
+}
+
+const api = {
+  _chyba: '0',
+  Initialize: () => obsluha('Initialize'),
+  Terminate: () => obsluha('Terminate'),
+  GetValue: k => obsluha('GetValue', k),
+  SetValue: (k, h) => obsluha('SetValue', k, h),
+  Commit: () => obsluha('Commit'),
+  GetLastError: () => '0', GetErrorString: () => '', GetDiagnostic: () => ''
+};
+if (v2004) window.API_1484_11 = api;
+else window.API = {
+  LMSInitialize: () => obsluha('LMSInitialize'),
+  LMSFinish: () => obsluha('LMSFinish'),
+  LMSGetValue: k => obsluha('LMSGetValue', k),
+  LMSSetValue: (k, h) => obsluha('LMSSetValue', k, h),
+  LMSCommit: () => obsluha('LMSCommit'),
+  LMSGetLastError: () => '0', LMSGetErrorString: () => '', LMSGetDiagnostic: () => ''
+};
+
+zapis('Zkušební LMS připraven, SCORM ' + (v2004 ? '2004' : '1.2'));
+document.getElementById('kurz').src = 'index.html';
+</script>
+</body>
+</html>

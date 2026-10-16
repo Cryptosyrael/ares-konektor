@@ -31,3 +31,13 @@ Poté se konektor objeví i v mobilní aplikaci.
 - ARES povoluje max. 500 dotazů za minutu.
 - Údaje z ARES mají jen informativní charakter, nejsou úřední listinou.
 - Server je jen pro čtení a nepotřebuje žádné heslo ani API klíč.
+
+---
+
+## Online kurz „Stroj, který naslouchá“
+
+Ve složce [`kurz-ai/`](kurz-ai/) je samostatný funkční online kurz pro seniory
+o konverzační AI: 4 moduly, 6 animovaných videí s namluvenými replikami a závěrečný
+test. Nesouvisí s konektorem ARES, je to statická stránka bez serveru — stačí otevřít
+`kurz-ai/index.html`. Umí i SCORM balíček pro LMS.
+Podrobnosti v [kurz-ai/README.md](kurz-ai/README.md).
